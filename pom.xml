@@ -15,5 +15,6 @@
     </parent>
     <modules>
         <module>simple-boot-rest-sample</module>
+        <module>simple-boot-config-sample</module>
     </modules>
 </project>

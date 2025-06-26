@@ -16,5 +16,6 @@
     <modules>
         <module>simple-boot-rest-sample</module>
         <module>simple-boot-config-sample</module>
+        <module>cloud</module>
     </modules>
 </project>

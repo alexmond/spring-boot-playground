@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: spring-boot-data-jpa-flyway
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+

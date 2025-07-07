@@ -1,0 +1,39 @@
+server:
+  port: 8888
+  tomcat:
+    accesslog:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+  endpoint:
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+
+spring:
+  application:
+    name: spring-boot-config-server
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090
+
+
+info:
+  tags:
+    environment: OPS
+
+
+
+

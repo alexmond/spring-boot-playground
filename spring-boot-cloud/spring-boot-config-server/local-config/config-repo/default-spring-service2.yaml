@@ -1,0 +1,25 @@
+sample:
+  config1: "common config"
+
+info:
+  tags:
+    environment: PROD
+---
+spring:
+  config:
+    activate:
+      on-profile: srv1
+server:
+  port: 8083
+sample:
+  config2: "service srv1 config"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: srv2
+server:
+  port: 8084
+sample:
+  config2: "service srv1 config"

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.alexmond.boot-sample</groupId>
+        <artifactId>boot-sample-root</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>spring-boot-thymeleaf</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>spring-boot-thymeleaf</name>
+    <packaging>pom</packaging>
+    <description>spring-boot-thymeleaf</description>
+
+    <modules>
+        <module>spring-boot-thymeleaf-sample</module>
+        <module>spring-boot-thymeleaf-layout</module>
+    </modules>
+
+</project>

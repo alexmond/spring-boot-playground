@@ -22,11 +22,11 @@ enum EnumSample {EN1, EN2, EN3}
 @Data
 public class ConfigSample {
     // Java doc style comments required for config metadata processor
-    /* String sample */
+    /** String sample **/
     String stringSample = "stringSample";
-    /* Boolean sample */
+    /** Boolean sample **/
     Boolean booleanSample = true;
-    /* Integer sample */
+    /** Integer sample **/
     @Min(10)
     @Max(200)
     Integer integerSample = 100;
@@ -36,6 +36,7 @@ public class ConfigSample {
     Collection<String> collectionSample = new ArrayList<>();
     Map<String, String> mapSample = new HashMap<>();
 
+    /** Nested class sample **/
     @NestedConfigurationProperty // required for config metadata processor
     ConfigSampleNested configSampleNested = new ConfigSampleNested();
 }

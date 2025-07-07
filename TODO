@@ -1,0 +1,13 @@
+Spring batch samples
+k8s samples
+start multiple boot processes (supervisord rewrite in spring boot )
+actuator sanitanization library
+HTML/ASCII doc/yaml schema generator
+Multiple datasources sample
+rabbitmq sample
+redis sample
+config server static file download
+http/tcp configurable health check
+k8s scaling sample
+web page
+decide one domain

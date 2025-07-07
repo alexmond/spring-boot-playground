@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Products</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-leaf"></i> Thymeleaf Demo
+            </a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/users">Users</a>
+                <a class="nav-link active" href="/products">Products</a>
+                <a class="nav-link" href="/forms/demo">Forms</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4" th:text="${title}">Product Catalog</h1>
+                
+                <!-- Filter Form -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form method="get" action="/products">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="category" class="form-label">Category</label>
+                                        <select class="form-select" id="category" name="category">
+                                            <option value="">All Categories</option>
+                                            <option th:each="cat : ${categories}" 
+                                                    th:value="${cat}" 
+                                                    th:text="${cat}"
+                                                    th:selected="${cat == selectedCategory}">Category</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="search" class="form-label">Search</label>
+                                        <input type="text" class="form-control" id="search" 
+                                               name="search" th:value="${searchTerm}" 
+                                               placeholder="Search products...">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        <label class="form-label">&nbsp;</label>
+                                        <button type="submit" class="btn btn-primary d-block w-100">
+                                            <i class="fas fa-search"></i> Filter
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div th:if="${#lists.isEmpty(products)}" class="alert alert-info">
+                    <i class="fas fa-info-circle"></i> No products found.
+                </div>
+                
+                <div th:unless="${#lists.isEmpty(products)}" class="row">
+                    <div class="col-md-6 col-lg-4 mb-4" th:each="product : ${products}">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h5 class="card-title" th:text="${product.name}">Product Name</h5>
+                                    <span th:if="${product.featured}" class="badge bg-warning">
+                                        <i class="fas fa-star"></i> Featured
+                                    </span>
+                                </div>
+                                
+                                <p class="card-text" th:text="${product.description}">Product description</p>
+                                
+                                <div class="mb-2">
+                                    <span class="badge bg-secondary" th:text="${product.category}">Category</span>
+                                </div>
+                                
+                                <div class="mb-2">
+                                    <span th:each="tag : ${product.tags}" 
+                                          th:text="${tag}" 
+                                          class="badge bg-light text-dark me-1">Tag</span>
+                                </div>
+                                
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-0">
+                                            <span th:text="${#numbers.formatCurrency(product.price)}">$99.99</span>
+                                        </h6>
+                                        <small class="text-muted">
+                                            Stock: <span th:text="${product.stock}">10</span>
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <span th:if="${product.stock > 0}" class="badge bg-success">In Stock</span>
+                                        <span th:unless="${product.stock > 0}" class="badge bg-danger">Out of Stock</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-2">
+                                    <small class="text-muted">
+                                        Added: <span th:text="${#temporals.format(product.createdAt, 'MMM dd, yyyy')}">Date</span>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div th:unless="${#lists.isEmpty(products)}" class="mt-3">
+                    <p class="text-muted">
+                        Showing <span th:text="${#lists.size(products)}">0</span> products
+                        <span th:if="${selectedCategory}"> in category "<span th:text="${selectedCategory}">Category</span>"</span>
+                        <span th:if="${searchTerm}"> matching "<span th:text="${searchTerm}">Search</span>"</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:fragment="scripts">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</th:block>
+</body>
+</html>

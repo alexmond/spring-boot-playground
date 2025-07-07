@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Form Result</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-leaf"></i> Thymeleaf Demo
+            </a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/users">Users</a>
+                <a class="nav-link" href="/products">Products</a>
+                <a class="nav-link active" href="/forms/demo">Forms</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4" th:text="${title}">Form Submission Result</h1>
+                
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> Form submitted successfully!
+                </div>
+                
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Submitted Information</h5>
+                        
+                        <table class="table table-striped">
+                            <tr>
+                                <td><strong>Name:</strong></td>
+                                <td th:text="${name}">John Doe</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Email:</strong></td>
+                                <td th:text="${email}">john@example.com</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Country:</strong></td>
+                                <td th:text="${country}">USA</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Hobbies:</strong></td>
+                                <td>
+                                    <div th:if="${hobbies != null and !#lists.isEmpty(hobbies)}">
+                                        <span th:each="hobby : ${hobbies}" 
+                                              th:text="${hobby}" 
+                                              class="badge bg-primary me-1">Hobby</span>
+                                    </div>
+                                    <div th:unless="${hobbies != null and !#lists.isEmpty(hobbies)}">
+                                        <span class="text-muted">No hobbies selected</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Message:</strong></td>
+                                <td>
+                                    <div th:if="${message != null and !#strings.isEmpty(message)}"
+                                         th:text="${message}">Message content</div>
+                                    <div th:unless="${message != null and !#strings.isEmpty(message)}"
+                                         class="text-muted">No message provided</div>
+                                </td>
+                            </tr>
+                        </table>
+                        
+                        <div class="mt-3">
+                            <a href="/forms/demo" class="btn btn-primary">
+                                <i class="fas fa-arrow-left"></i> Back to Form
+                            </a>
+                            <a href="/static" class="btn btn-secondary">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:fragment="scripts">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</th:block>
+</body>
+</html>

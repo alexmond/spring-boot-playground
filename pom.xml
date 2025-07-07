@@ -13,9 +13,16 @@
         <version>3.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <properties>
+        <spring-boot-admin.version>3.2.3</spring-boot-admin.version>
+    </properties>
     <modules>
         <module>simple-boot-rest-sample</module>
         <module>simple-boot-config-sample</module>
-        <module>cloud</module>
+        <module>spring-boot-data-jpa-flyway</module>
+        <module>spring-boot-cloud</module>
+        <module>spring-boot-openapi</module>
+        <module>spring-boot-supervisor</module>
+        <module>spring-boot-thymeleaf</module>
     </modules>
 </project>

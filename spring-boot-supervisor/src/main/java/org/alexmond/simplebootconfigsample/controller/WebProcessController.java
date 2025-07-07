@@ -12,11 +12,11 @@ import java.util.List;
 @RequestMapping("/process")
 public class WebProcessController {
 
-    @GetMapping
-    public String listUsers(Model model) {
-        List<ProcessStatusRest> processes = userService.getAllUsers();
-        model.addAttribute("users", processes);
-        model.addAttribute("title", "Process List");
-        return "process/list";
-    }
+//    @GetMapping
+//    public String listUsers(Model model) {
+//        List<ProcessStatusRest> processes = userService.getAllUsers();
+//        model.addAttribute("users", processes);
+//        model.addAttribute("title", "Process List");
+//        return "process/list";
+//    }
 }

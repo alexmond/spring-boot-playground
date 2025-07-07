@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.alexmond.simplebootconfigsample.config.SupervisorConfig;
 import org.alexmond.simplebootconfigsample.model.RunningProcess;
 import org.alexmond.simplebootconfigsample.repository.ProcessRepository;
+import org.alexmond.simplebootconfigsample.service.ProcessManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,9 +34,9 @@ public class RestProcessController {
         this.processManager = processManager;
     }
 
-    @GetMapping("/start")
-    public  RunningProcess startProcess() throws IOException {
-        return processManager.startProcessSimple();
+    @PostMapping("/startAll")
+    public void startAllProcess() throws IOException {
+        processManager.startAllProcess();
     }
 
 

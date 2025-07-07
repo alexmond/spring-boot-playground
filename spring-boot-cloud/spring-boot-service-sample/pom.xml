@@ -14,6 +14,12 @@
     <description>spring-boot-service-sample</description>
     <properties>
         <java.version>21</java.version>
+        <!-- GitHub Environment Variables -->
+        <github.workflow.env>GITHUB_WORKFLOW</github.workflow.env>
+        <github.action.env>GITHUB_ACTION</github.action.env>
+        <github.sha.env>GITHUB_SHA</github.sha.env>
+        <github.ref.env>GITHUB_REF</github.ref.env>
+        <github.repository.env>GITHUB_REPOSITORY</github.repository.env>
     </properties>
     <dependencies>
         <dependency>
@@ -33,12 +39,6 @@
             <artifactId>spring-boot-admin-starter-client</artifactId>
             <version>${spring-boot-admin.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -75,6 +75,12 @@
                                 <title>${project.name}</title>
                                 <artifact>${project.artifactId}</artifact>
                                 <version>${project.version}</version>
+                                <!-- GitHub Configuration -->
+                                <github.workflow>${env.${github.workflow.env}}</github.workflow>
+                                <github.action>${env.${github.action.env}}</github.action>
+                                <github.sha>${env.${github.sha.env}}</github.sha>
+                                <github.ref>${env.${github.ref.env}}</github.ref>
+                                <github.repository>${env.${github.repository.env}}</github.repository>
                             </additionalProperties>
                         </configuration>
                     </execution>

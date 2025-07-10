@@ -32,5 +32,6 @@
         <module>spring-boot-admin-server</module>
         <module>spring-boot-config-server</module>
         <module>spring-boot-service-sample</module>
+        <module>spring-boot-admin-server-secure</module>
     </modules>
 </project>

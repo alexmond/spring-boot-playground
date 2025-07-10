@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: http://localhost
+  description: Generated server url
+tags:
+- name: User Services
+  description: User API
+paths:
+  /api/v1/users/{id}:
+    put:
+      tags:
+      - User Services
+      summary: Update a user's name
+      operationId: updateUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: newName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: User successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    delete:
+      tags:
+      - User Services
+      summary: Delete a user
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "200":
+          description: User successfully deleted
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /api/v1/users:
+    get:
+      tags:
+      - User
+      - User Services
+      summary: Returns all users
+      operationId: getAllUsers
+      responses:
+        "200":
+          description: Returns all users
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+    post:
+      tags:
+      - User Services
+      summary: Register a new user
+      operationId: register
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+          default: Stranger
+      responses:
+        "201":
+          description: User successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /hello:
+    get:
+      tags:
+      - hello-world-rest
+      operationId: HelloWorld
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+          minLength: 1
+      required:
+      - name

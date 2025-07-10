@@ -34,6 +34,7 @@ public class ConfigSample {
     EnumSample enumSample = EnumSample.EN1;
 
     Collection<String> collectionSample = new ArrayList<>();
+    Collection<ConfigSampleNested> configSampleNesteds = new ArrayList<>();
     Map<String, String> mapSample = new HashMap<>();
 
     /** Nested class sample **/

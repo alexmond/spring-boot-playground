@@ -41,3 +41,10 @@ info:
   tags:
     environment: OPS
 
+users:
+  admin-users:
+    - user: user
+      password: password
+    - user: user2
+      password: password2
+

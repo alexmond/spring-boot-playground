@@ -31,12 +31,12 @@
                     <a href="/users" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Back to Users
                     </a>
-                    <a th:href="@{/users/edit/{id}(id=${adminUser.id})}" class="btn btn-warning">
+                    <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-warning">
                         <i class="fas fa-edit"></i> Edit User
                     </a>
                 </div>
 
-                <div th:if="${adminUser}" class="card">
+                <div th:if="${user}" class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -44,27 +44,27 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <td><strong>ID:</strong></td>
-                                        <td th:text="${adminUser.id}">1</td>
+                                        <td th:text="${user.id}">1</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Full Name:</strong></td>
-                                        <td th:text="${adminUser.fullName}">John Doe</td>
+                                        <td th:text="${user.fullName}">John Doe</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Email:</strong></td>
-                                        <td th:text="${adminUser.email}">john@example.com</td>
+                                        <td th:text="${user.email}">john@example.com</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Birth Date:</strong></td>
-                                        <td th:text="${#temporals.format(adminUser.birthDate, 'MMMM dd, yyyy')}">January 01, 1990</td>
+                                        <td th:text="${#temporals.format(user.birthDate, 'MMMM dd, yyyy')}">January 01, 1990</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Role:</strong></td>
                                         <td>
-                                            <span th:text="${adminUser.role.displayName}"
+                                            <span th:text="${user.role.displayName}"
                                                   class="badge"
-                                                  th:classappend="${adminUser.role.name() == 'ADMIN'} ? 'bg-danger' :
-                                                                 (${adminUser.role.name() == 'MODERATOR'} ? 'bg-warning' : 'bg-info')">
+                                                  th:classappend="${user.role.name() == 'ADMIN'} ? 'bg-danger' :
+                                                                 (${user.role.name() == 'MODERATOR'} ? 'bg-warning' : 'bg-info')">
                                                 User
                                             </span>
                                         </td>
@@ -72,8 +72,8 @@
                                     <tr>
                                         <td><strong>Status:</strong></td>
                                         <td>
-                                            <span th:if="${adminUser.active}" class="badge bg-success">Active</span>
-                                            <span th:unless="${adminUser.active}" class="badge bg-secondary">Inactive</span>
+                                            <span th:if="${user.active}" class="badge bg-success">Active</span>
+                                            <span th:unless="${user.active}" class="badge bg-secondary">Inactive</span>
                                         </td>
                                     </tr>
                                 </table>
@@ -81,33 +81,33 @@
                             
                             <div class="col-md-6">
                                 <h5>Address</h5>
-                                <div th:if="${adminUser.address}" class="card">
+                                <div th:if="${user.address}" class="card">
                                     <div class="card-body">
-                                        <p th:text="${adminUser.address.street}">123 Main St</p>
+                                        <p th:text="${user.address.street}">123 Main St</p>
                                         <p>
-                                            <span th:text="${adminUser.address.city}">City</span>,
-                                            <span th:text="${adminUser.address.state}">State</span>
-                                            <span th:text="${adminUser.address.zipCode}">12345</span>
+                                            <span th:text="${user.address.city}">City</span>,
+                                            <span th:text="${user.address.state}">State</span>
+                                            <span th:text="${user.address.zipCode}">12345</span>
                                         </p>
-                                        <p th:text="${adminUser.address.country}">Country</p>
+                                        <p th:text="${user.address.country}">Country</p>
                                     </div>
                                 </div>
-                                
+
                                 <h5 class="mt-4">Interests</h5>
-                                <div th:if="${adminUser.interests != null and !#lists.isEmpty(adminUser.interests)}">
-                                    <span th:each="interest : ${adminUser.interests}"
-                                          th:text="${interest}" 
+                                <div th:if="${user.interests != null and !#lists.isEmpty(user.interests)}">
+                                    <span th:each="interest : ${user.interests}"
+                                          th:text="${interest}"
                                           class="badge bg-primary me-1">Interest</span>
                                 </div>
-                                <div th:unless="${adminUser.interests != null and !#lists.isEmpty(adminUser.interests)}">
+                                <div th:unless="${user.interests != null and !#lists.isEmpty(user.interests)}">
                                     <p class="text-muted">No interests specified</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div th:unless="${adminUser}" class="alert alert-danger">
+
+                <div th:unless="${user}" class="alert alert-danger">
                     <i class="fas fa-exclamation-triangle"></i> User not found.
                 </div>
             </div>

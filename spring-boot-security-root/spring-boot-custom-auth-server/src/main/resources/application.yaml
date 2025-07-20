@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: spring-boot-auth-server
+
+    
+auth:
+  user-configs: 
+    - username: test1
+      password: test1
+      role: user
+    - username: user2
+      password: pass2
+      role: admin
+    - username: user3
+      password: pass3
+      role: user
+    - username: user4
+      password: pass4
+      role: user
+    - username: user5
+      password: pass5
+      role: moderator
+    - username: user6
+      password: pass6
+      role: user
+
+server:
+  port: 8081

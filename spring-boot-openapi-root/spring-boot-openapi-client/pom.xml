@@ -55,7 +55,7 @@
                             <inputSpec>api-docs.yaml</inputSpec>
 
                             <!-- target to generate java client code -->
-                            <generatorName>spring</generatorName>
+                            <generatorName>java</generatorName>
 
                             <!-- hint: if you want to generate java server code, e.g. based on Spring Boot,
                                  you can use the following target: <generatorName>spring</generatorName> -->
@@ -66,9 +66,9 @@
 <!--                            </configOptions>-->
 
                             <!-- override the default library to jersey2 -->
-<!--                            <library>restclient</library>-->
+                                <library>restclient</library>
                             <configOptions>
-                                <delegatePattern>true</delegatePattern>
+<!--                                <delegatePattern>true</delegatePattern>-->
                                 <useSpringBoot3>true</useSpringBoot3>
                             </configOptions>
                         </configuration>

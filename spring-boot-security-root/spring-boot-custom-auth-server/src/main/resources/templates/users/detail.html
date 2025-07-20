@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">User Details</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-leaf"></i> Thymeleaf Demo
+            </a>
+            <div class="navbar-nav">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link active" href="/users">Users</a>
+                <a class="nav-link" href="/products">Products</a>
+                <a class="nav-link" href="/forms/demo">Forms</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4" th:text="${title}">User Details</h1>
+                
+                <div class="mb-3">
+                    <a href="/users" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to Users
+                    </a>
+                    <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Edit User
+                    </a>
+                </div>
+
+                <div th:if="${user}" class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>Personal Information</h5>
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <td><strong>ID:</strong></td>
+                                        <td th:text="${user.id}">1</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Full Name:</strong></td>
+                                        <td th:text="${user.fullName}">John Doe</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Username:</strong></td>
+                                        <td th:text="${user.username}">John Doe</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Password:</strong></td>
+                                        <td th:text="${user.password}">John Doe</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Email:</strong></td>
+                                        <td th:text="${user.email}">john@example.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Role:</strong></td>
+                                        <td>
+                                            <span th:text="${user.role.displayName}"
+                                                  class="badge"
+                                                  th:classappend="${user.role.name() == 'ADMIN'} ? 'bg-danger' :
+                                                                 (${user.role.name() == 'MODERATOR'} ? 'bg-warning' : 'bg-info')">
+                                                User
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Status:</strong></td>
+                                        <td>
+                                            <span th:if="${user.active}" class="badge bg-success">Active</span>
+                                            <span th:unless="${user.active}" class="badge bg-secondary">Inactive</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div th:unless="${user}" class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i> User not found.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:fragment="scripts">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</th:block>
+</body>
+</html>

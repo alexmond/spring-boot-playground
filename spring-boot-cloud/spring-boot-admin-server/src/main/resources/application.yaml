@@ -5,6 +5,17 @@ spring:
   application:
     name: spring-boot-admin-server
   boot.admin.client.url: http://localhost:8090
+  cloud:
+    discovery:
+      client:
+        simple:
+          instances:
+            server1:
+              - uri: http://localhost:9083
+                metadata:
+                  management:
+                    context-path: /actuator
+
 management:
   httpexchanges:
     recording:

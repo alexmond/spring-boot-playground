@@ -9,8 +9,15 @@ spring:
   config:
     activate:
       on-profile: srv1
+  boot:
+    admin:
+      client:
+        enabled: false
 server:
   port: 8083
+management:
+  server:
+    port: 9083
 sample:
   config2: "service srv1 config"
 
@@ -21,5 +28,8 @@ spring:
       on-profile: srv2
 server:
   port: 8084
+management:
+  server:
+    port: 9084
 sample:
   config2: "service srv1 config"

@@ -1,6 +1,6 @@
 package org.alexmond.simplebootconfigsample.repository;
 
-import org.alexmond.simplebootconfigsample.model.User;
+import org.alexmond.sample.auth.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

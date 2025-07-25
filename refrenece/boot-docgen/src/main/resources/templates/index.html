@@ -1,0 +1,141 @@
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Exchange Application Adminstration</title>
+    <head>
+        <script>
+            function myFunction(page) {
+                document.getElementById("iframeContent").src = "documentgenerator.html#" + page;
+                if (document.querySelector('#list.menuList li.active') !== null) {
+                    document.querySelector('#list.menuList li.active').classList.remove('active');
+                }
+                document.getElementById(page).classList.add("active");
+            }
+        </script>
+        <style>
+            body {
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 14px;
+                color: #000;
+            }
+
+            ul {
+                margin: 0;
+                padding: 0;
+            }
+
+            .menu {
+                display: block;
+                width: 23%;
+                float: left;
+                position: fixed;
+                top: 0;
+                overflow-x: hidden;
+                height: 100%;
+            }
+
+            .content {
+                display: block;
+                width: 77%;
+                float: left;
+                padding-left: 23%;
+            }
+
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+            }
+
+            .headerHolder {
+                display: block;
+                width: 100%;
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            .logo {
+                text-align: left;
+                margin: 1em 0 0 25px;
+            }
+
+            .footerHolder {
+                display: block;
+                box-shadow: inset 0 1px 0 0 #dedede;
+                width: 100%;
+                background-color: #fafafa;
+                float: left;
+                margin-top: 0;
+                margin-bottom: 0;
+                position: fixed;
+                bottom: 0;
+            }
+
+            .footerLeftText,
+            .footerRightText {
+                font-family: Verdana, Geneva, sans-serif;
+                margin-left: 0;
+                display: block;
+                box-shadow: inset 0 1px 0 0 #dedede;
+                background-color: #fafafa;
+                color: #64687b;
+                font-size: 14px;
+                font-weight: normal;
+                letter-spacing: 0;
+                line-height: 21px;
+                height: 100%;
+            }
+
+            .footerLeftText {
+                float: left;
+                padding: 0.5em;
+                text-align: left;
+            }
+
+            .footerRightText {
+                float: right;
+                text-align: right;
+                padding: 0.5em 1.5em 0.5em 0.5em;
+            }
+
+            ul#list {
+                padding: 1em 0 0 1em;
+            }
+
+            .menuList li {
+                width: 85%;
+                list-style: none;
+                border-radius: 5px;
+                padding: 10px 0 10px 10px;
+                cursor: pointer;
+                margin-bottom: 3px;
+            }
+
+            .active {
+                background-color: #000;
+                color: #FFFFFF;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+<body>
+<div class="menu">
+    <div class="headerHolder" id="header">
+        <div class="logo"><img alt="Sample Logo"
+                               height="59"
+        </div>
+    <ul class="menuList" id="list">
+        <th:block th:each="app: ${prop.getApps()}">
+            <li onClick="myFunction(this.getAttribute('data1'))" th:data1="${app.getId()}" th:id="${app.getId()}"
+                th:text="${app.getOrder()} + ' ' + ${app.getTitle()}">1. Credential Service Provider Properties
+            </li>
+        </th:block>
+    </ul>
+</div>
+<div class="content">
+    <iframe id="iframeContent" name="iframeContent" src="documentgenerator.html"></iframe>
+</div>
+<div class="footerHolder" id="footer">
+    <div class="footerRightText" th:text="${prop.getEffectiveDate()}">STUB</div>
+</div>
+</body>
+</html>

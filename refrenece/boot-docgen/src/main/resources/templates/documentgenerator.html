@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 98%;
+            margin-bottom: 3em;
+            table-layout: fixed;
+        }
+
+        th, td {
+            text-align: left;
+            border: 1px solid #ddd;
+            padding: 8px;
+            overflow: hidden;
+            overflow-wrap: anywhere;
+            word-break: break-all;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <title>FIX-title</title>
+</head>
+<body>
+<div th:each="app: ${prop.getApps()}">
+    <h1 th:id="${app.getId()}" th:text="${prop.getVersion()} + ' ' + ${app.getTitle()}">heading</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Default</th>
+            <th>Description</th>
+        </tr>
+        <tr th:each="property: ${app.getProperties()}">
+            <td th:text="${property.getName()}"></td>
+            <td th:text="${property.getDefaultValue()}"></td>
+            <td th:utext="${property.getDescription()}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

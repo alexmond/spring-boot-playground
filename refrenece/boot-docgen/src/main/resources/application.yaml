@@ -1,0 +1,32 @@
+app:
+  version: "Exchange v@project.version@ Application Administration: "
+  generic-meta: "/common/META-INF/spring-configuration-metadata.json"
+  output-dir: paramsDoc
+  index-file: index.html
+  prop-file: documentgenerator.html
+  documents:
+    - id: "test-prop"
+      source:
+        - "/test-prop"
+        - "/test-prop"
+      header: "test-prop"
+      order: 1
+
+  mapping:
+    string:
+      - java.lang.String
+    boolean:
+      - java.lang.Boolean
+    integer:
+      - java.lang.Integer
+    array:
+      - 'java.lang.String[]'
+      - 'java.util.List<java.lang.String>'
+
+logging:
+  level:
+    root: info
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.web.embedded.EmbeddedWebServerFactoryCustomizerAutoConfiguration

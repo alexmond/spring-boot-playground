@@ -1,4 +1,4 @@
-package org.alexmond.sample.auth.config;
+package org.alexmond.sample.config;
 
 import lombok.Data;
 

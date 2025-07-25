@@ -1,13 +1,13 @@
-package org.alexmond.simplebootconfigsample;
+package org.alexmond.sample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SimpleBootConfigSampleApplication {
+public class BootConfigJsonSchemaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SimpleBootConfigSampleApplication.class, args);
+        SpringApplication.run(BootConfigJsonSchemaApplication.class, args);
     }
 
 }

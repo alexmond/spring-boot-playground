@@ -1,14 +1,20 @@
-package org.alexmond.sample.auth.config;
+package org.alexmond.sample.controller;
 
+import org.alexmond.sample.config.ConfigSample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ConfigPrintRest {
-@Autowired ConfigSample configSample;
+final
+ConfigSample configSample;
 
-    @GetMapping("/")
+    public ConfigPrintRest(ConfigSample configSample) {
+        this.configSample = configSample;
+    }
+
+    @GetMapping("/config")
     public ConfigSample Config(){
         return configSample;
     }

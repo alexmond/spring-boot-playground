@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="SimpleBootConfigSampleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
     <module name="simple-boot-config-sample" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="org.alexmond.simplebootconfigsample.SimpleBootConfigSampleApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.alexmond.sample.SimpleBootConfigSampleApplication" />
     <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
       <option name="credential" />
       <option name="region" />

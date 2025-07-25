@@ -1,4 +1,4 @@
-package org.alexmond.sample.auth.config;
+package org.alexmond.sample.config;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -8,10 +8,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 enum EnumSample {EN1, EN2, EN3}
@@ -33,8 +30,8 @@ public class ConfigSample {
 
     EnumSample enumSample = EnumSample.EN1;
 
-    Collection<String> collectionSample = new ArrayList<>();
-    Collection<ConfigSampleNested> configSampleNesteds = new ArrayList<>();
+    List<String> collectionSample = new ArrayList<>();
+    List<ConfigSampleNested> configSampleNesteds = new ArrayList<>();
     Map<String, String> mapSample = new HashMap<>();
 
     /** Nested class sample **/

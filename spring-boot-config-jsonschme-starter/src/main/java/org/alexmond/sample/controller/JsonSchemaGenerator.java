@@ -11,11 +11,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @Component
 @Slf4j
 public class JsonSchemaGenerator {
 
     private final ObjectMapper mapper;
+
+    private String toSnakeCase(String input) {
+        if (input == null) return input;
+        String regex = "([a-z])([A-Z])";
+        String replacement = "$1_$2";
+        return input.replaceAll(regex, replacement).toLowerCase();
+    }
+
+    private Map<String, Object> processComplexType(String type) {
+        try {
+            Class<?> clazz = Class.forName(type);
+            Map<String, Object> properties = new HashMap<>();
+            for (java.lang.reflect.Field field : clazz.getDeclaredFields()) {
+                Map<String, Object> fieldDef = new HashMap<>();
+                fieldDef.put("type", mapType(field.getType().getName()));
+                properties.put(toSnakeCase(field.getName()), fieldDef);
+            }
+            return properties;
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
+    }
 
     public JsonSchemaGenerator(ObjectMapper mapper) {
         log.info("Initializing JsonSchemaGenerator");
@@ -71,6 +94,13 @@ public class JsonSchemaGenerator {
             processEnumValues(propDef, prop);
             processDeprecation(propDef, prop);
 
+            if (mapType(prop.getType()).equals("object")) {
+                Map<String, Object> complexProperties = processComplexType(prop.getType());
+                if (complexProperties != null) {
+                    propDef.put("properties", complexProperties);
+                }
+            }
+
             node.put(key, propDef);
         } else {
             // Ensure node structure
@@ -102,6 +132,7 @@ public class JsonSchemaGenerator {
         try {
             Class<?> type = Class.forName(springType);
             if (type.isEnum()) return "string";
+            if (!type.isPrimitive() && !type.getName().startsWith("java.lang.")) return "object";
         } catch (ClassNotFoundException e) {
             if (springType.contains("Enum")) return "string";
         }

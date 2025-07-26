@@ -9,10 +9,7 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 
 @Schema(description = "Sample enumeration values")
@@ -45,9 +42,9 @@ public class ConfigSample {
     EnumSample enumSample = EnumSample.EN1;
 
     @Schema(description = "Sample string collection")
-    Collection<String> collectionSample = new ArrayList<>();
+    List<String> collectionSample = new ArrayList<>();
     @Schema(description = "Sample nested configuration collection")
-    Collection<ConfigSampleNested> configSampleNesteds = new ArrayList<>();
+    List<ConfigSampleNested2> configSampleNesteds = new ArrayList<>();
     @Schema(description = "Sample string map")
     Map<String, String> mapSample = new HashMap<>();
 

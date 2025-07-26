@@ -94,7 +94,12 @@ public class JsonSchemaGenerator {
             processEnumValues(propDef, prop);
             processDeprecation(propDef, prop);
 
-            if (mapType(prop.getType()).equals("object")) {
+            if (mapType(prop.getType()).equals("array")) {
+                String itemType = extractListItemType(prop.getType());
+                Map<String, Object> items = new HashMap<>();
+                items.put("type", mapType(itemType));
+                propDef.put("items", items);
+            } else if (mapType(prop.getType()).equals("object")) {
                 Map<String, Object> complexProperties = processComplexType(prop.getType());
                 if (complexProperties != null) {
                     propDef.put("properties", complexProperties);
@@ -135,6 +140,13 @@ public class JsonSchemaGenerator {
             if (!type.isPrimitive() && !type.getName().startsWith("java.lang.")) return "object";
         } catch (ClassNotFoundException e) {
             if (springType.contains("Enum")) return "string";
+        }
+        return "string";
+    }
+
+    private String extractListItemType(String type) {
+        if (type.contains("<") && type.contains(">")) {
+            return type.substring(type.indexOf("<") + 1, type.indexOf(">"));
         }
         return "string";
     }

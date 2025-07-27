@@ -44,9 +44,12 @@ public class ConfigSample {
     @Schema(description = "Sample string collection")
     List<String> collectionSample = new ArrayList<>();
     @Schema(description = "Sample nested configuration collection")
-    List<ConfigSampleNested2> configSampleNesteds = new ArrayList<>();
+    List<ConfigSampleNested2> configSampleObjectArray = new ArrayList<>();
     @Schema(description = "Sample string map")
     Map<String, String> mapSample = new HashMap<>();
+
+    @Schema(description = "Sample object map")
+    Map<String, ConfigMapObject> mapObjectSample = new HashMap<>();
 
     /**
      * Nested class sample

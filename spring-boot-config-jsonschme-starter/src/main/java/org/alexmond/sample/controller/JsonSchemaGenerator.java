@@ -80,10 +80,7 @@ public class JsonSchemaGenerator {
         ConfigurationMetadataRepository repo = repository; // load repository (as in previous answer)
         String jsonSchemaString = toJsonSchema(
                 repo,
-                included,
-                "your-schema-id",
-                "Spring Boot Configuration Properties",
-                "Auto-generated schema from configuration metadata"
+                included
         );
         System.out.println("\n\n =========================== \n\n");
 
@@ -220,14 +217,14 @@ public class JsonSchemaGenerator {
         this.mapper = mapper;
     }
 
-    public String toJsonSchema(ConfigurationMetadataRepository repository, List<String> included,
-                               String schemaId, String title, String description) throws Exception {
-        log.info("Starting JSON schema generation with id: {}, title: {}", schemaId, title);
+    public String toJsonSchema(ConfigurationMetadataRepository repository, List<String> included) throws Exception {
+        log.info("Starting JSON schema generation");
+
         Map<String, Object> schema = new HashMap<>();
-        schema.put("$schema", "http://json-schema.org/draft-07/schema#");
-        schema.put("$id", schemaId);
-        schema.put("title", title);
-        schema.put("description", description);
+        schema.put("$schema", jsonConfigSchemaConfig.getSchemaSpec());
+        schema.put("$id", jsonConfigSchemaConfig.getSchemaId());
+        schema.put("title", jsonConfigSchemaConfig.getTitle());
+        schema.put("description", jsonConfigSchemaConfig.getDescription());
         schema.put("type", "object");
 
         Map<String, Object> propertiesNode = new HashMap<>();

@@ -1,11 +1,10 @@
-package org.alexmond.sample.config;
+package org.alexmond.sample.cloud.config;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Configuration

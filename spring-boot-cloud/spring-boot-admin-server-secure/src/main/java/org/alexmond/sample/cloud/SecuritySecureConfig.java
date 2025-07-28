@@ -1,8 +1,8 @@
-package cloud.sample;
+package org.alexmond.sample.cloud;
 
 import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import jakarta.servlet.DispatcherType;
-import cloud.sample.config.Users;
+import org.alexmond.sample.cloud.config.Users;
 import org.springframework.boot.actuate.audit.AuditEventRepository;
 import org.springframework.boot.actuate.audit.InMemoryAuditEventRepository;
 import org.springframework.context.annotation.Bean;

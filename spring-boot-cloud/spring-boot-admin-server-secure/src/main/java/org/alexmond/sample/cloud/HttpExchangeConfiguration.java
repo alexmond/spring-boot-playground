@@ -1,4 +1,4 @@
-package cloud.sample;
+package org.alexmond.sample.cloud;
 
 import org.springframework.boot.actuate.web.exchanges.InMemoryHttpExchangeRepository;
 import org.springframework.context.annotation.Bean;

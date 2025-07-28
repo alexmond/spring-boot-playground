@@ -1,7 +1,6 @@
-package cloud.sample.config;
+package org.alexmond.sample.cloud.config;
 
 import lombok.Data;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

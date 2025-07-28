@@ -1,7 +1,7 @@
 package org.alexmond.sample.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.alexmond.sample.config.JsonConfigSchemaConfig;
+import org.alexmond.sample.cloud.config.JsonConfigSchemaConfig;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotationUtils;

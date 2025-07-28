@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package org.alexmond.sample.org.springframework.boot.configurationmetadata;
-
-import org.springframework.boot.configurationmetadata.ConfigurationMetadataProperty;
+package org.springframework.boot.configurationmetadata;
 
 /**
  * An extension of {@link ConfigurationMetadataProperty} that provides a reference to its

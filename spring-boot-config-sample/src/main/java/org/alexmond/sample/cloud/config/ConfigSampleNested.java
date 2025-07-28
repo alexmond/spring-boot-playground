@@ -1,4 +1,4 @@
-package org.alexmond.sample.config;
+package org.alexmond.sample.cloud.config;
 
 import lombok.Data;
 

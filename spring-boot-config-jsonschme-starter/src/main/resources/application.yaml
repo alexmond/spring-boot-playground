@@ -16,7 +16,23 @@ sample:
 
   config-sample-nested:
     nested-config1: nestedConfig
+logging:
+  level:
+    root: info
+    sun:
+      rmi: error
+    javax:
+      management: error
 
+server:
+  error:
+
+    whitelabel:
+      enabled: true
+  servlet:
+    session:
+      cookie:
+        partitioned: true
 ---
 spring:
   config:

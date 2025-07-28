@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f3f4f6; /* Light gray background */
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+button, input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    min-width: 200px;
+    min-height: 60px;
+    box-sizing: border-box;
+
+    transition: background-color 0.2s;
+}
+
+button, input[type="submit"]:hover {
+    background-color: #0056b3;
+}

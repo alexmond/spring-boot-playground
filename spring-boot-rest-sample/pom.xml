@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>org.alexmond</groupId>
-    <artifactId>simple-boot-rest-sample</artifactId>
+    <artifactId>spring-boot-rest-sample</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>simple-boot-rest-sample</name>
     <description>simple-boot-rest-sample</description>

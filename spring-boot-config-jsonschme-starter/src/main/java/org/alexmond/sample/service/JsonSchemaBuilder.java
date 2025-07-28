@@ -2,7 +2,7 @@
 package org.alexmond.sample.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.alexmond.sample.cloud.config.JsonConfigSchemaConfig;
+import org.alexmond.sample.config.JsonConfigSchemaConfig;
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataProperty;
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataRepository;
 import org.springframework.stereotype.Service;

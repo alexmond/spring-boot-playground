@@ -1,4 +1,4 @@
-package org.alexmond.sample.cloud.config;
+package org.alexmond.sample.config;
 
 import lombok.Data;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- description: Generated server url
+  url: http://localhost
+tags:
+- description: User API
+  name: User Services
+paths:
+  /api/v1/users/{id}:
+    delete:
+      operationId: deleteUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: boolean
+          description: User successfully deleted
+      summary: Delete a user
+      tags:
+      - User Services
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: newName
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: User successfully updated
+      summary: Update a user's name
+      tags:
+      - User Services
+      x-accepts:
+      - application/json
+  /api/v1/users:
+    get:
+      operationId: getAllUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: Returns all users
+      summary: Returns all users
+      tags:
+      - User
+      - User Services
+      x-accepts:
+      - application/json
+    post:
+      operationId: register
+      parameters:
+      - explode: true
+        in: query
+        name: name
+        required: false
+        schema:
+          default: Stranger
+          type: string
+        style: form
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: User successfully created
+      summary: Register a new user
+      tags:
+      - User Services
+      x-accepts:
+      - application/json
+  /hello:
+    get:
+      operationId: HelloWorld
+      responses:
+        "200":
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: OK
+      tags:
+      - hello-world-rest
+      x-accepts:
+      - '*/*'
+components:
+  schemas:
+    User:
+      example:
+        name: name
+        id: 0
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          minLength: 1
+          type: string
+      required:
+      - name
+

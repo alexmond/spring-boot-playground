@@ -43,8 +43,8 @@ info:
 
 users:
   admin-users:
-    - user: user
+    - username: user
       password: password
-    - user: user2
+    - username: user2
       password: password2
 

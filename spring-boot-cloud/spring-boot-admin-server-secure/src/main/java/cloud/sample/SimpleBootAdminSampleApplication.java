@@ -1,4 +1,4 @@
-package org.alexmond.simplebootadminsample;
+package cloud.sample;
 
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;

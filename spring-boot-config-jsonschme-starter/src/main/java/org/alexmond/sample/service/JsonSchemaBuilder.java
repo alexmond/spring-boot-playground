@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.alexmond.sample.config.JsonConfigSchemaConfig;
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataProperty;
 import org.springframework.boot.configurationmetadata.ConfigurationMetadataRepository;
+import org.springframework.boot.configurationmetadata.Deprecation;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -24,6 +25,7 @@ public class JsonSchemaBuilder {
     public Map<String, Object> buildSchema(ConfigurationMetadataRepository repository, List<String> included) {
         log.info("Starting JSON schema generation");
         Map<String, Object> schema = new LinkedHashMap<>();
+
         schema.put("$schema", config.getSchemaSpec());
         schema.put("$id", config.getSchemaId());
         schema.put("title", config.getTitle());
@@ -49,6 +51,11 @@ public class JsonSchemaBuilder {
         String key = path[idx];
         if (idx == path.length - 1) {
             Map<String, Object> propDef = new LinkedHashMap<>();
+            // skip deprecated property with error level
+            if(prop.isDeprecated() && prop.getDeprecation().getLevel() == Deprecation.Level.ERROR ){
+                log.debug("Skipping property is deprecated and removed: {}", prop.getName());
+                return;
+            }
             if(prop.getType() == null) {
                 log.error("property {} prop.type is null", prop.getName());
                 return;
@@ -134,7 +141,7 @@ public class JsonSchemaBuilder {
                         .filter(value -> value != null)
                         .toList();
                 if (hints.size() > 1) {
-                    log.info("Property '{}' has multiple hints: {}", prop.getName(), hints);
+                    log.debug("Property '{}' has multiple hints: {}", prop.getName(), hints);
                 }
                 propDef.put("examples", hints);
             }

@@ -2,6 +2,7 @@
 package org.alexmond.sample.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -11,8 +12,11 @@ import java.util.*;
 @Slf4j
 public class TypeMappingService {
 
+    @Autowired MissingTypeCollector missingTypeCollector;
+
     public String mapType(String springType) {
-        if (springType == null) return "object";
+        log.debug("Mapping Spring type: {}", springType);
+        if (springType == null) return "string";
         switch (springType) {
             case "java.lang.String":
             case "java.lang.String[]":
@@ -23,6 +27,11 @@ public class TypeMappingService {
             case "java.util.Calendar":
             case "java.util.TimeZone":
             case "org.springframework.util.unit.DataSize":
+            case "java.lang.Character":
+            case "char":
+            case "java.io.File":
+            case "org.springframework.http.MediaType":
+            case "java.net.InetAddress":
                 return "string";
             case "java.lang.Boolean":
             case "boolean":
@@ -42,45 +51,89 @@ public class TypeMappingService {
             case "java.math.BigDecimal":
                 return "number";
         }
+        if (springType.startsWith("java.util.List") || springType.startsWith("java.util.Set")) return "array";
+        if (springType.startsWith("java.util.Map")) return "object";
         try {
-            Class<?> clazz = Class.forName(springType);
-            if (String.class.isAssignableFrom(clazz)) {
-                return "string";
-            }
+            Class<?> type = Class.forName(springType);
+            if (type.isEnum()) return "string";
+            if (!type.isPrimitive() && !type.getName().startsWith("java.lang.")) return "object";
         } catch (ClassNotFoundException e) {
-            // Ignore and continue with string comparison
+            if (springType.contains("Enum")) return "string";
         }
-        try {
-            Class<?> clazz = Class.forName(springType);
-            if (Set.class.isAssignableFrom(clazz)) {
-                return "array";
-            }
-        } catch (ClassNotFoundException e) {
-            // Ignore and continue with string comparison
-        }
-        try {
-            Class<?> clazz = Class.forName(springType);
-            if (List.class.isAssignableFrom(clazz)) {
-                return "array";
-            }
-        } catch (ClassNotFoundException e) {
-            // Ignore and continue with string comparison
-        }
-        try {
-            Class<?> clazz = Class.forName(springType);
-            if (Map.class.isAssignableFrom(clazz)) {
-                return "object";
-            }
-        } catch (ClassNotFoundException e) {
-            // Ignore and continue with string comparison
-        }
-        if(!(springType.startsWith("java.util.List") || springType.startsWith("java.util.Set") || springType.startsWith("java.util.Map"))) {
-            log.error("Unknown springType: {}, returning object", springType);
-        }else{
-            log.debug("Found springType: {}, returning object", springType);
-        }
-        return "object";
+        missingTypeCollector.addType(springType);
+        return "string";
     }
+
+//    public String mapType(String springType) {
+//        if (springType == null) return "object";
+//        switch (springType) {
+//            case "java.lang.String":
+//            case "java.lang.String[]":
+//            case "java.nio.charset.Charset":
+//            case "java.time.Duration": // can improve by introducing some regexp
+//            case "java.util.Locale":
+//            case "java.util.Date":
+//            case "java.util.Calendar":
+//            case "java.util.TimeZone":
+//            case "org.springframework.util.unit.DataSize":
+//                return "string";
+//            case "java.lang.Boolean":
+//            case "boolean":
+//                return "boolean";
+//            case "java.lang.Integer":
+//            case "int":
+//            case "java.lang.Long":
+//            case "long":
+//            case "java.lang.Short":
+//            case "short":
+//            case "java.math.BigInteger":
+//                return "integer";
+//            case "java.lang.Float":
+//            case "float":
+//            case "double":
+//            case "java.lang.Double":
+//            case "java.math.BigDecimal":
+//                return "number";
+//        }
+//        try {
+//            Class<?> clazz = Class.forName(springType);
+//            if (String.class.isAssignableFrom(clazz)) {
+//                return "string";
+//            }
+//        } catch (ClassNotFoundException e) {
+//            // Ignore and continue with string comparison
+//        }
+//        try {
+//            Class<?> clazz = Class.forName(springType);
+//            if (Set.class.isAssignableFrom(clazz)) {
+//                return "array";
+//            }
+//        } catch (ClassNotFoundException e) {
+//            // Ignore and continue with string comparison
+//        }
+//        try {
+//            Class<?> clazz = Class.forName(springType);
+//            if (List.class.isAssignableFrom(clazz)) {
+//                return "array";
+//            }
+//        } catch (ClassNotFoundException e) {
+//            // Ignore and continue with string comparison
+//        }
+//        try {
+//            Class<?> clazz = Class.forName(springType);
+//            if (Map.class.isAssignableFrom(clazz)) {
+//                return "object";
+//            }
+//        } catch (ClassNotFoundException e) {
+//            // Ignore and continue with string comparison
+//        }
+//        if(!(springType.startsWith("java.util.List") || springType.startsWith("java.util.Set") || springType.startsWith("java.util.Map"))) {
+//            log.error("Unknown springType: {}, returning object", springType);
+//        }else{
+//            log.debug("Found springType: {}, returning object", springType);
+//        }
+//        return "object";
+//    }
 
     public Map<String, Object> processComplexType(String type) {
         return processComplexType(type, new HashSet<>());

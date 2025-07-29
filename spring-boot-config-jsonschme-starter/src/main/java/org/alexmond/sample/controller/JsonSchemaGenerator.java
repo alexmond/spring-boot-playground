@@ -7,6 +7,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.alexmond.sample.service.JsonSchemaService;
 import org.alexmond.sample.service.ConfigurationPropertyCollector;
+import org.alexmond.sample.service.MissingTypeCollector;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.nio.file.Paths;
@@ -21,6 +23,9 @@ public class JsonSchemaGenerator {
 
     private final JsonSchemaService jsonSchemaService;
     private final ConfigurationPropertyCollector propertyCollector;
+
+    @Autowired
+    MissingTypeCollector missingTypeCollector;
 
     public JsonSchemaGenerator(JsonSchemaService jsonSchemaService,
                               ConfigurationPropertyCollector propertyCollector) {
@@ -39,7 +44,12 @@ public class JsonSchemaGenerator {
         ObjectWriter yamlWriter = yamlMapper.writer(new DefaultPrettyPrinter());
         log.info("Writing yaml schema");
         yamlWriter.writeValue(Paths.get(YAML_SCHEMA_FILE).toFile(), jsonMapper.readTree(jsonSchemaString));
-        
+
+        log.info("=============== Missing types");
+
+        missingTypeCollector.getMissingTypes().forEach(missingType -> {
+            log.info("Found missing type: {} with count of {}", missingType.getKey(), missingType.getValue());});
+
         return jsonSchemaString;
     }
 

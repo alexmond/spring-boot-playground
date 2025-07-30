@@ -9,6 +9,7 @@ public class UserController {
     @GetMapping("/user")
     public String user(Model model) {
         model.addAttribute("title", "User Page");
+        model.addAttribute("indexLinkText", "Index Page");
         return "user";
     }
 }

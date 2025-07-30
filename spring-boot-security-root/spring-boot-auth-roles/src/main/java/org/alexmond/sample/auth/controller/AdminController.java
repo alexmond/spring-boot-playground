@@ -9,6 +9,7 @@ public class AdminController {
     @GetMapping("/admin")
     public String admin(Model model) {
         model.addAttribute("title", "Admin Page");
+        model.addAttribute("indexLinkText", "Index Page");
         return "admin";
     }
 }

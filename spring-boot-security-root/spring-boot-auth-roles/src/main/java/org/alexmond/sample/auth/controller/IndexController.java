@@ -9,6 +9,8 @@ public class IndexController {
     @GetMapping({"/", "/index"})
     public String index(Model model) {
         model.addAttribute("title", "Index Page");
+        model.addAttribute("userLinkText", "User Page");
+        model.addAttribute("adminLinkText", "Admin Page");
         return "index";
     }
 }

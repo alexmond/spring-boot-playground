@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-
+<h1> You have been authenticated as an admin.</h1>
+<div class="center-links">
+    <a th:href="@{/index}" th:text="${indexLinkText}">Index Page</a>
+</div>
 </body>
 </html>

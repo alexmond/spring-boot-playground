@@ -5,9 +5,9 @@
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<form action="/login">
-  <button type="submit">Login</button>
-</form>
-
+  <div class="center-links">
+    <a th:href="@{/user}" th:text="${userLinkText}">User Page</a>
+    <a th:href="@{/admin}" th:text="${adminLinkText}">Admin Page</a>
+  </div>
 </body>
 </html>

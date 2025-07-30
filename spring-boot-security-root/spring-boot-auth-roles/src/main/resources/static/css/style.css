@@ -4,7 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    color: blue;
+    color: black;
     background-color: #f3f4f6; /* Light gray background */
     font-family: 'Segoe UI', Arial, sans-serif;
 }
@@ -21,6 +21,8 @@ body {
 form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 button, input[type="submit"] {

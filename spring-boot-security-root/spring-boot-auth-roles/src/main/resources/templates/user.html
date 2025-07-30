@@ -10,5 +10,8 @@
 <div class="center-links">
     <a th:href="@{/index}" th:text="${indexLinkText}">Index Page</a>
 </div>
+<form th:action="@{/logout}" method="post" style="display:inline;">
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>

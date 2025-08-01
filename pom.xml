@@ -25,6 +25,5 @@
         <module>spring-boot-thymeleaf</module>
         <module>spring-boot-config-dependency</module>
         <module>spring-boot-security-root</module>
-        <module>spring-boot-jsonschema</module>
     </modules>
 </project>

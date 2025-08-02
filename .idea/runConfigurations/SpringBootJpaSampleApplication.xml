@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="SpringBootJpaSampleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
     <module name="spring-boot-data-jpa-flyway" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="org.alexmond.simplebootconfigsample.SpringBootJpaSampleApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.alexmond.sample.jpa.SpringBootJpaSampleApplication" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="org.alexmond.simplebootconfigsample.*" />
+        <option name="PATTERN" value="org.alexmond.sample.jpa.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

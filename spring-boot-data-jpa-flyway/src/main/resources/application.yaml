@@ -5,6 +5,7 @@ spring:
     admin:
       client:
         url: http://localhost:8090
+        enabled: false
   datasource:
     url: jdbc:h2:mem:testdb
     username: sa

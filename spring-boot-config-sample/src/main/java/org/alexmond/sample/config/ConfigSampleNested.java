@@ -1,4 +1,4 @@
-package org.alexmond.config.json.schema.config;
+package org.alexmond.sample.config;
 
 import lombok.Data;
 

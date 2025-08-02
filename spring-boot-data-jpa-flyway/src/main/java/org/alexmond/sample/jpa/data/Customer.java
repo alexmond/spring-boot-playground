@@ -1,4 +1,4 @@
-package org.alexmond.simplebootconfigsample.data;
+package org.alexmond.sample.jpa.data;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

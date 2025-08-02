@@ -1,4 +1,4 @@
-package org.alexmond.simplebootconfigsample.repository;
+package org.alexmond.sample.jpa.repository;
 
 import org.alexmond.sample.auth.model.User;
 import org.springframework.stereotype.Repository;

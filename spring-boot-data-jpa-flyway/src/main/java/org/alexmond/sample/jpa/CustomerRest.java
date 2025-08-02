@@ -1,6 +1,6 @@
-package org.alexmond.simplebootconfigsample;
+package org.alexmond.sample.jpa;
 
-import org.alexmond.simplebootconfigsample.repository.CustomerRepository;
+import org.alexmond.sample.jpa.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

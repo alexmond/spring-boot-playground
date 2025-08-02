@@ -1,4 +1,4 @@
-package org.alexmond.config.json.schema.config;
+package org.alexmond.sample.config;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

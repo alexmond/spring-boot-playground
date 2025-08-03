@@ -3,3 +3,9 @@ spring:
     name: spring-boot-auth-roles
 server:
     port: 8080
+users:
+  admin-users:
+    - user: user
+      password: password
+    - user: user2
+      password: password2

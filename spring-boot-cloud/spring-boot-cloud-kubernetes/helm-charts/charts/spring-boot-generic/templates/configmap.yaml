@@ -1,0 +1,13 @@
+{{ if .Values.configmap }}
+{{- $fullName := include "spring-boot-generic.fullname" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.spring.application.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "spring-boot-generic.labels" . | nindent 4 }}
+data:
+  application.yaml: |-
+    {{- toYaml .Values.appconfig | nindent 4 }}
+{{ end }}

@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="SpringBootConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
     <module name="spring-boot-config-server" />
-    <option name="SPRING_BOOT_MAIN_CLASS" value="org.alexmond.simplebootconfigsample.SpringBootConfigServerApplication" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.alexmond.sample.cloud.SpringBootConfigServerApplication" />
     <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/spring-boot-cloud/spring-boot-config-server/local-config" />
     <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
       <option name="credential" />

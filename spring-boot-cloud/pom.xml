@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.alexmond.boot-sample</groupId>
+        <groupId>org.alexmond</groupId>
         <artifactId>boot-sample-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -29,9 +29,8 @@
     </dependencies>
 </dependencyManagement>
     <modules>
-        <module>spring-boot-admin-server</module>
-        <module>spring-boot-config-server</module>
-        <module>spring-boot-service-sample</module>
-        <module>spring-boot-admin-server-secure</module>
+        <module>spring-boot-cloud-nodiscovery</module>
+        <module>spring-boot-cloud-eureka</module>
+        <module>spring-boot-cloud-kubernetes</module>
     </modules>
 </project>

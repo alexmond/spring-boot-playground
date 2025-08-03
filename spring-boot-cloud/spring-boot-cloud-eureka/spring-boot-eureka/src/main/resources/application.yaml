@@ -1,0 +1,44 @@
+server:
+  port: 7777
+  tomcat:
+    accesslog:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    jmx:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+  endpoint:
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+
+spring:
+  application:
+    name: spring-boot-config-server
+  cloud:
+    config:
+      enabled: false
+
+info:
+  tags:
+    environment: OPS
+
+eureka:
+  client:
+    registerWithEureka: false # Prevents the Eureka server from registering itself as a client
+    fetchRegistry: false     # Prevents the Eureka server from fetching the registry from other Eureka servers
+  server:
+    enable-self-preservation: true # Enables self-preservation mode to prevent mass de-registrations during network partitions
+
+
+
+

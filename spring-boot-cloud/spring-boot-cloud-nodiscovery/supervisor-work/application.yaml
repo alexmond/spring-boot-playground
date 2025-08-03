@@ -1,0 +1,114 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: simple-boot-supervisor
+  boot:
+    admin:
+      client:
+        url: http://localhost:8090
+  task:
+    execution:
+      thread-name-prefix: "process-pool-"
+      pool:
+        core-size: 8
+        max-size: 20
+        queue-capacity: 25
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+    os:
+      enabled: true
+    process:
+      enabled: true
+    tags:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+    env:
+      show-values: always
+    configprops:
+      show-values: always
+
+logging:
+  level:
+    root: info
+    sun:
+      rmi: info
+    javax:
+      management:
+        remote:
+          rmi: info
+
+cloud-root: /Users/alex.mondshain/IdeaProjects/spring-boot-playground/spring-boot-cloud
+supervisor:
+  process:
+    config-server:
+      name: config-server
+      command: "java"
+      working-directory: "../spring-boot-config-server/local-config"
+      stdout-logfile: ../spring-boot-config-server/local-config/config-server-stdout.log
+      stderr-logfile: ../spring-boot-config-server/local-config/config-server-error.log
+      args:
+        - "-jar"
+        - ../target/spring-boot-config-server-0.0.1-SNAPSHOT.jar
+    admin-server:
+      command: "java"
+      working-directory: "../spring-boot-admin-server"
+      stdout-logfile: ../spring-boot-admin-server/admin-server-stdout.log
+      stderr-logfile: ../spring-boot-admin-server/admin-server-error.log
+      args:
+        - "-jar"
+        - target/spring-boot-admin-server-0.0.1-SNAPSHOT.jar
+      shutdown-timeout: 1m
+    service1:
+      command: "java"
+      working-directory: "../spring-boot-service-sample"
+      stdout-logfile: ../spring-boot-service-sample/service1-stdout.log
+      stderr-logfile: ../spring-boot-service-sample/service1-error.log
+      args:
+        - "-Dspring.profiles.active=srv1"
+        - "-jar"
+        - target/spring-boot-service-sample-0.0.1-SNAPSHOT.jar
+    service2:
+      command: "java"
+      working-directory: "../spring-boot-service-sample"
+      stdout-logfile: ../spring-boot-service-sample/service2-stdout.log
+      stderr-logfile: ../spring-boot-service-sample/service2-error.log
+      args:
+        - "-Dspring.profiles.active=srv2"
+        - "-jar"
+        - target/spring-boot-service-sample-0.0.1-SNAPSHOT.jar
+    service3:
+      command: "java"
+      working-directory: "../spring-boot-service-sample"
+      stdout-logfile: ../spring-boot-service-sample/service21-stdout.log
+      stderr-logfile: ../spring-boot-service-sample/service21-error.log
+      args:
+        - "-Dspring.profiles.active=srv1"
+        - "-Dspring.application.name=default-spring-service2"
+        - "-jar"
+        - target/spring-boot-service-sample-0.0.1-SNAPSHOT.jar
+
+    service4:
+      command: "java"
+      working-directory: "../spring-boot-service-sample"
+      stdout-logfile: ../spring-boot-service-sample/service22-stdout.log
+      stderr-logfile: ../spring-boot-service-sample/service22-error.log
+      args:
+        - "-Dspring.profiles.active=srv2"
+        - "-Dspring.application.name=default-spring-service2"
+        - "-jar"
+        - target/spring-boot-service-sample-0.0.1-SNAPSHOT.jar
+
+
+

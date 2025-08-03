@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: default-spring-service
+#  cloud:
+#    config:
+#      fail-fast: true
+#      uri: http://localhost:8888
+#      retry:
+#        max-attempts: 10
+#
+#
+#  config:
+#    import: configserver:"http://localhost:8888?fail-fast=true&max-attempts=10&max-interval=1500&multiplier=1.2&initial-interval=1100"
+
+
+
+
+

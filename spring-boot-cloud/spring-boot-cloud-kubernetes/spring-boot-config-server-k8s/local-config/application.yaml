@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: native
+    include:
+      - consolelog
+  cloud:
+    config:
+      server:
+        native:
+          search-locations:
+            - file:./config-repo
+logging:
+  level:
+    root: info

@@ -6,7 +6,11 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<h1> You have been authenticated as an admin.</h1>
+<p>
+    <strong th:text="${username}">Full Name</strong>
+    has been authenticated as a
+    <span th:text="${role}">Role</span>
+</p>
 <div class="center-links">
     <a th:href="@{/index}" th:text="${indexLinkText}">Index Page</a>
 </div>

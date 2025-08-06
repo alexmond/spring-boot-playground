@@ -9,6 +9,7 @@ public class LoginController {
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("title", "Login Page");
+        model.addAttribute("indexLinkText", "Index Page");
         return "login";
     }
 }

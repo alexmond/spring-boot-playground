@@ -7,5 +7,7 @@ users:
   admin-users:
     - user: user
       password: password
+      role: USER
     - user: user2
       password: password2
+      role: ADMIN

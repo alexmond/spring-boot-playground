@@ -21,7 +21,10 @@ public class Users {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         Collection<UserDetails> userDetails = new ArrayList<>();
         for(AdminUser adminUser : adminUsers){
-            userDetails.add(User.withUsername(adminUser.getUser()).password(passwordEncoder.encode(adminUser.getPassword())).roles("USER").build());
+            String roleName = adminUser.getRole() != null ? adminUser.getRole().name() : "USER";
+            userDetails.add(User.withUsername(adminUser.getUser())
+                    .password(passwordEncoder.encode(adminUser.getPassword()))
+                    .roles(roleName).build());
         }
         return userDetails;
     }

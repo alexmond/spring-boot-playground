@@ -1,0 +1,8 @@
+users:
+  appUsers:
+    - username: user
+      password: "{noop}password"
+      roles: ["USER"]
+    - username: admin
+      password: "{noop}password"
+      roles: ["ADMIN", "USER"]

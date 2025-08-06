@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Auth Roles Demo</a>
+        <div class="navbar-nav ms-auto">
+            <span th:if="${#authorization.expression('isAuthenticated()')}">
+                <form th:action="@{/logout}" method="post" style="display:inline;">
+                    <button class="btn btn-outline-light" type="submit">Logout</button>
+                </form>
+            </span>
+            <span th:if="${!#authorization.expression('isAuthenticated()')}">
+                <a class="btn btn-outline-light" th:href="@{/login}">Login</a>
+            </span>
+        </div>
+    </div>
+</nav>
+<div class="container mt-4">
+    <h1>Welcome to the Auth Roles Demo</h1>
+    <p>This is the public index page. Anyone can access this page.</p>
+    <div>
+        <a class="btn btn-primary" th:href="@{/user}">User Page</a>
+        <a class="btn btn-danger" th:href="@{/admin}">Admin Page</a>
+    </div>
+</div>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

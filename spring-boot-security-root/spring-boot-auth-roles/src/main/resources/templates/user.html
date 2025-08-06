@@ -7,9 +7,9 @@
 </head>
 <body>
 <h1>
-    <span th:text="${user.fullName}">Full Name</span>
+    <span th:text="${username}">Full Name</span>
     has been authenticated as a
-    <span th:text="${user.role}">Role</span>.
+<!--    <span th:text="${user.role}">Role</span>.-->
 </h1>
 <div class="center-links">
     <a th:href="@{/index}" th:text="${indexLinkText}">Index Page</a>

@@ -1,5 +1,7 @@
-package org.alexmond.sample.auth.config;
+package org.alexmond.sample.auth;
 
+import org.alexmond.sample.auth.config.Role;
+import org.alexmond.sample.auth.config.Users;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +20,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/", "/index", "/css/**").permitAll()
+                .requestMatchers("/user").hasAnyRole(Role.USER.toString(), Role.ADMIN.toString())
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form

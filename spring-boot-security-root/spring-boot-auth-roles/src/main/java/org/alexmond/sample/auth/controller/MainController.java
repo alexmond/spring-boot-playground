@@ -3,7 +3,6 @@ package org.alexmond.sample.auth.controller;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,13 +20,7 @@ public class MainController {
     }
 
     private String getRoleName(UserDetails user) {
-        if (user == null) return "USER";
-        return user.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .filter(auth -> auth.startsWith("ROLE_"))
-                .findFirst()
-                .map(auth -> auth.replace("ROLE_", ""))
-                .orElse("USER");
+        return user.getAuthorities().stream().map(a -> a.getAuthority()).findFirst().get();
     }
 
     @GetMapping("/user")

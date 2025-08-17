@@ -1,0 +1,1 @@
+ALTER SEQUENCE customer_seq INCREMENT BY 50;

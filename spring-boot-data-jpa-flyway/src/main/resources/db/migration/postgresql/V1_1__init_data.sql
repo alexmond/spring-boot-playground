@@ -1,0 +1,2 @@
+INSERT INTO customer(id, first_name, last_name,email) VALUES('1', 'first', 'first lastname', 'first@gmail.com');
+INSERT INTO customer(id, first_name, last_name,email) VALUES('2', 'second', 'second-lastname', 'second@gmail.com');

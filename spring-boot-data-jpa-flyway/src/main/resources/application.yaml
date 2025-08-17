@@ -6,11 +6,18 @@ spring:
       client:
         url: http://localhost:8090
         enabled: false
+#  datasource:
+#    url: jdbc:h2:mem:testdb
+#    username: sa
+#    password: sa
+#    driver-class-name: org.h2.Driver
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: sa
-    driver-class-name: org.h2.Driver
+    url: jdbc:postgresql://localhost:5432/testdb
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    clean-disabled: false
 
 management:
   endpoints:

@@ -12,6 +12,7 @@ ConfigSample configSample;
 
     @GetMapping("/")
     public ConfigSample Config(){
+
         return configSample;
     }
 }

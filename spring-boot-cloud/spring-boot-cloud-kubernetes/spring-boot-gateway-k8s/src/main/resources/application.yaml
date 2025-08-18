@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: spring-boot-gateway
-  cloud:
-    config:
-      enabled: false

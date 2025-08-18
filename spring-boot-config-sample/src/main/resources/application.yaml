@@ -2,7 +2,7 @@ spring:
   profiles:
     active: test
 sample:
-  boolean-sample: false
+#  boolean-sample: false
   string-sample: "config string"
   integer-sample: 10
   enum-sample: en2

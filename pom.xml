@@ -20,10 +20,8 @@
         <module>spring-boot-rest-sample</module>
         <module>spring-boot-config-sample</module>
         <module>spring-boot-data-jpa-flyway</module>
-        <module>spring-boot-cloud</module>
         <module>spring-boot-openapi-root</module>
         <module>spring-boot-thymeleaf</module>
-        <module>spring-boot-config-dependency</module>
         <module>spring-boot-security-root</module>
     </modules>
 </project>

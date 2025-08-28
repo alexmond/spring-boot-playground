@@ -3,9 +3,7 @@ package org.alexmond.sample.jpa.controller;
 import org.alexmond.sample.jpa.data.Customer;
 import org.alexmond.sample.jpa.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CustomerRest {
@@ -39,5 +37,28 @@ public class CustomerRest {
         customer.setEmail(email);
         customerRepository.save(customer);
         return customer;
+    }
+
+    @DeleteMapping("/removeCustomer")
+    public String removeCustomer(@RequestParam("id") Long id){
+        if (!customerRepository.existsById(id)) {
+            return "Customer with id " + id + " does not exist";
+        }
+        customerRepository.deleteById(id);
+        return "Removed customer with id " + id;
+    }
+
+    @PutMapping("/editCustomer")
+    public String editCustomer(@RequestParam("id") Long id, @RequestParam("firstName") String firstName,
+                               @RequestParam("lastName") String lastName, @RequestParam("email") String email){
+        if (!customerRepository.existsById(id)) {
+            return "Customer with id " + id + " does not exist";
+        }
+        Customer customer = customerRepository.getReferenceById(id);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+        customer.setEmail(email);
+        customerRepository.save(customer);
+        return "Updated customer with id " + id;
     }
 }

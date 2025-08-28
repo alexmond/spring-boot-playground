@@ -15,6 +15,18 @@ public class CustomerRest {
         return customerRepository.findAll().toString();
     }
 
+    @GetMapping("/getCustomersByFirstName")
+    public String getCustomersByFirstName(@RequestParam("firstName") String firstName){
+        var customers = customerRepository.findByFirstName(firstName);
+        return customers.toString();
+    }
+
+    @GetMapping("/getCustomersByLastName")
+    public String getCustomersByLastName(@RequestParam("lastName") String lastName){
+        var customers = customerRepository.findByLastName(lastName);
+        return customers.toString();
+    }
+
     @PostMapping("/addCustomer")
     public String addCustomer(){
         Customer customer = addCustomerWithDetails("firstname", "lastname", "firstname_lastname@gmail.com");

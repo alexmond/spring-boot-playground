@@ -1,45 +1,139 @@
 package org.alexmond.sample.jpa.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.alexmond.sample.jpa.data.Customer;
 import org.alexmond.sample.jpa.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class CustomerRest {
     @Autowired
     CustomerRepository customerRepository;
 
+    @Operation(
+            summary = "Get all customers",
+            description = "Return all customers from the database",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Customers returned successfully",
+                            content = @Content(schema = @Schema(type = "array", implementation = Customer.class)))
+            }
+    )
     @GetMapping("/getAllCustomers")
-    public String getAllUsers(){
-        return customerRepository.findAll().toString();
+    public ResponseEntity<List<Customer>> getAllUsers(){
+        List<Customer> gotCustomers = customerRepository.findAll();
+        return ResponseEntity.ok(gotCustomers);
     }
 
-    @GetMapping("/getCustomersByFirstName")
-    public String getCustomersByFirstName(@RequestParam("firstName") String firstName){
-        var customers = customerRepository.findByFirstName(firstName);
-        return customers.toString();
+    @Operation(
+            summary = "Get a customer by their ID",
+            description = "Return the customer with the specified ID",
+            parameters = {
+                    @Parameter(name = "id", description = "The id of the desired customer", required = true)
+            },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Customer returned successfully",
+                            content = @Content(schema = @Schema(implementation = Customer.class))),
+                    @ApiResponse(responseCode = "204", description = "Customer with the specified id not found")
+            }
+    )
+    @GetMapping("/getCustomerByID/{id}")
+    public ResponseEntity<Customer> getCustomerByID(@PathVariable("id") Long id){
+        Customer gotCustomer = customerRepository.findById(id).orElse(null);
+        return ResponseEntity.ok(gotCustomer);
     }
 
-    @GetMapping("/getCustomersByLastName")
-    public String getCustomersByLastName(@RequestParam("lastName") String lastName){
-        var customers = customerRepository.findByLastName(lastName);
-        return customers.toString();
-    }
-
-    @PostMapping("/addCustomer")
-    public String addCustomer(){
-        Customer customer = addCustomerWithDetails("firstname", "lastname", "firstname_lastname@gmail.com");
-        return customer.toString();
-    }
-
-    @PostMapping("/addMultipleCustomers")
-    public String addMultipleCustomers(){
-        int n = 200;
-        for (int i = 1; i <= n; i++) {
-            addCustomerWithDetails("firstname" + i, "lastname" + i, "firstname_lastname" + i + "@gmail.com");
+    @Operation(
+            summary = "Get customers by their first name",
+            description = "Return all customers who have the specified first name",
+            parameters = {
+                    @Parameter(name = "firstName", description = "The first name of the desired customers",
+                            required = true)
+            },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Customers returned successfully",
+                            content = @Content(schema = @Schema(type = "array", implementation = Customer.class))),
+                    @ApiResponse(responseCode = "204",
+                            description = "Customer(s) with the specified first name not found")
+            }
+    )
+    @GetMapping("/getCustomersByFirstName/{firstName}")
+    public ResponseEntity<List<Customer>> getCustomersByFirstName(@PathVariable("firstName") String firstName){
+        List<Customer> gotCustomers = customerRepository.findByFirstName(firstName);
+        if (gotCustomers.isEmpty()) {
+            return ResponseEntity.noContent().build();
         }
-        return "Added " + n + " customers";
+        return ResponseEntity.ok(gotCustomers);
+    }
+
+    @Operation(
+            summary = "Get customers by their last name",
+            description = "Return all customers who have the specified last name",
+            parameters = {
+                    @Parameter(name = "lastName", description = "The last name of the desired customers",
+                            required = true)
+            },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Customers returned successfully",
+                            content = @Content(schema = @Schema(type = "array", implementation = Customer.class))),
+                    @ApiResponse(responseCode = "204",
+                            description = "Customer(s) with the specified last name not found")
+            }
+    )
+    @GetMapping("/getCustomersByLastName/{lastName}")
+    public ResponseEntity<List<Customer>> getCustomersByLastName(@PathVariable("lastName") String lastName){
+        List<Customer> gotCustomers = customerRepository.findByLastName(lastName);
+        if (gotCustomers.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(gotCustomers);
+    }
+
+    @Operation(
+            summary = "Add a customer",
+            description = "Creates a single customer with predefined data",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Customer created successfully",
+                            content = @Content(schema = @Schema(implementation = Customer.class))),
+                    @ApiResponse(responseCode = "500", description = "Internal server error")
+            }
+    )
+    @PostMapping("/addCustomer")
+    public ResponseEntity<Customer> addCustomer(){
+        Customer addedCustomer = addCustomerWithDetails("firstname", "lastname", "firstname_lastname@gmail.com");
+        return ResponseEntity.ok(addedCustomer);
+    }
+
+    @Operation(
+            summary = "Add multiple customers",
+            description = "Creates the specified number of customers with generated data",
+            parameters = {
+                    @Parameter(name = "num", description = "The number of customers to add", required = true)
+            },
+            responses = {
+                    @ApiResponse(responseCode = "201", description = "Customers created successfully",
+                            content = @Content(schema = @Schema(type = "array", implementation = Customer.class))),
+                    @ApiResponse(responseCode = "400", description = "Invalid number parameter")
+            }
+    )
+    @PostMapping("/addMultipleCustomers/{num}")
+    public ResponseEntity<List<Customer>> addMultipleCustomers(@PathVariable("num") int num){
+        List<Customer> addedCustomers = new ArrayList<>();
+        for (int i = 1; i <= num; i++) {
+            Customer addedCustomer = addCustomerWithDetails("firstname" + i,
+                    "lastname" + i, "firstname_lastname" + i + "@gmail.com");
+            addedCustomers.add(addedCustomer);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(addedCustomers);
     }
 
     private Customer addCustomerWithDetails(String firstName, String lastName, String email){
@@ -51,26 +145,50 @@ public class CustomerRest {
         return customer;
     }
 
-    @DeleteMapping("/removeCustomer")
-    public String removeCustomer(@RequestParam("id") Long id){
+    @Operation(
+            summary = "Remove a customer",
+            description = "Remove an existing customer based on the provided ID",
+            parameters = {
+                    @Parameter(name = "id", description = "ID of the customer to remove", required = true)
+            },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Customer removed successfully",
+                            content = @Content(schema = @Schema(implementation = Customer.class))),
+                    @ApiResponse(responseCode = "404", description = "Customer not found")
+            }
+    )
+    @DeleteMapping("/removeCustomer/{id}")
+    public ResponseEntity<Customer> removeCustomer(@PathVariable("id") Long id) {
         if (!customerRepository.existsById(id)) {
-            return "Customer with id " + id + " does not exist";
+            return ResponseEntity.notFound().build();
         }
+        Customer removedCustomer = customerRepository.findById(id).orElse(null);
         customerRepository.deleteById(id);
-        return "Removed customer with id " + id;
+        return ResponseEntity.ok(removedCustomer);
     }
 
-    @PutMapping("/editCustomer")
-    public String editCustomer(@RequestParam("id") Long id, @RequestParam("firstName") String firstName,
-                               @RequestParam("lastName") String lastName, @RequestParam("email") String email){
+    @Operation(
+            summary = "Edit customer details",
+            description = "Updates an existing customer's information based on the provided ID and request body",
+            parameters = {
+                    @Parameter(name = "id", description = "ID of the customer to update", required = true)
+            },
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Customer updated successfully",
+                            content = @Content(schema = @Schema(implementation = Customer.class))),
+                    @ApiResponse(responseCode = "404", description = "Customer not found")
+            }
+    )
+    @PutMapping("/editCustomer/{id}")
+    public ResponseEntity<Customer> editCustomer(@PathVariable("id") Long id, @RequestBody Customer customer) {
         if (!customerRepository.existsById(id)) {
-            return "Customer with id " + id + " does not exist";
+            return ResponseEntity.notFound().build();
         }
-        Customer customer = customerRepository.getReferenceById(id);
-        customer.setFirstName(firstName);
-        customer.setLastName(lastName);
-        customer.setEmail(email);
-        customerRepository.save(customer);
-        return "Updated customer with id " + id;
+        Customer existingCustomer = customerRepository.getReferenceById(id);
+        existingCustomer.setFirstName(customer.getFirstName());
+        existingCustomer.setLastName(customer.getLastName());
+        existingCustomer.setEmail(customer.getEmail());
+        Customer updatedCustomer = customerRepository.save(existingCustomer);
+        return ResponseEntity.ok(updatedCustomer);
     }
 }

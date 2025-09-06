@@ -1,12 +1,9 @@
 package org.alexmond.sample.jpa.data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Index;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -21,4 +18,6 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String email;
+    @OneToMany(mappedBy = "customerId")
+    private List<Roles> roles;
 }

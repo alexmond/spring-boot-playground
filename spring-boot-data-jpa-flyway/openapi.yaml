@@ -1,0 +1,389 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+tags:
+  - name: Roles
+    description: Endpoints for managing roles
+paths:
+  /editCustomer/{id}:
+    put:
+      tags:
+        - customer-rest
+      summary: Edit customer details
+      description: Updates an existing customer's information based on the provided
+        ID and request body
+      operationId: editCustomer
+      parameters:
+        - name: id
+          in: path
+          description: ID of the customer to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Customer"
+        required: true
+      responses:
+        "200":
+          description: Customer updated successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "404":
+          description: Customer not found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Customer"
+  /addRoleByID/{id}/{roleName}:
+    post:
+      tags:
+        - Roles
+      summary: Add a role
+      description: Creates a role with the specified ID
+      operationId: addRole
+      parameters:
+        - name: id
+          in: path
+          description: ID for the role
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: roleName
+          in: path
+          description: Name of the role
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Role created successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Roles"
+        "500":
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Roles"
+  /addRole/{roleName}:
+    post:
+      tags:
+        - Roles
+      summary: Add a role
+      description: Creates a role with a predefined ID
+      operationId: addRole_1
+      parameters:
+        - name: roleName
+          in: path
+          description: Name of the role
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Role created successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Roles"
+        "500":
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Roles"
+  /addMultipleCustomers/{num}:
+    post:
+      tags:
+        - customer-rest
+      summary: Add multiple customers
+      description: Creates the specified number of customers with generated data
+      operationId: addMultipleCustomers
+      parameters:
+        - name: num
+          in: path
+          description: The number of customers to add
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "201":
+          description: Customers created successfully
+          content:
+            '*/*':
+              schema:
+                type: array
+                $ref: "#/components/schemas/Customer"
+        "400":
+          description: Invalid number parameter
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+  /addCustomer:
+    post:
+      tags:
+        - customer-rest
+      summary: Add a customer
+      description: Creates a single customer with predefined data
+      operationId: addCustomer
+      responses:
+        "200":
+          description: Customer created successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "500":
+          description: Internal server error
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Customer"
+  /getRoleByID/{id}:
+    get:
+      tags:
+        - Roles
+      summary: Get a role by its ID
+      description: Return the role associated with the specified ID
+      operationId: getRoleByID
+      parameters:
+        - name: id
+          in: path
+          description: The id associated with the desired role
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Role returned successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Roles"
+        "404":
+          description: Role with the specified id not found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Roles"
+  /getCustomersByLastName/{lastName}:
+    get:
+      tags:
+        - customer-rest
+      summary: Get customers by their last name
+      description: Return all customers who have the specified last name
+      operationId: getCustomersByLastName
+      parameters:
+        - name: lastName
+          in: path
+          description: The last name of the desired customers
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Customers returned successfully
+          content:
+            '*/*':
+              schema:
+                type: array
+                $ref: "#/components/schemas/Customer"
+        "204":
+          description: Customer(s) with the specified last name not found
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+  /getCustomersByFirstName/{firstName}:
+    get:
+      tags:
+        - customer-rest
+      summary: Get customers by their first name
+      description: Return all customers who have the specified first name
+      operationId: getCustomersByFirstName
+      parameters:
+        - name: firstName
+          in: path
+          description: The first name of the desired customers
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Customers returned successfully
+          content:
+            '*/*':
+              schema:
+                type: array
+                $ref: "#/components/schemas/Customer"
+        "204":
+          description: Customer(s) with the specified first name not found
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+  /getCustomerByID/{id}:
+    get:
+      tags:
+        - customer-rest
+      summary: Get a customer by their ID
+      description: Return the customer with the specified ID
+      operationId: getCustomerByID
+      parameters:
+        - name: id
+          in: path
+          description: The id of the desired customer
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Customer returned successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "204":
+          description: Customer with the specified id not found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Customer"
+  /getAllRoles:
+    get:
+      tags:
+        - Roles
+      summary: Get all roles
+      description: Return all roles from the database
+      operationId: getAllRoles
+      responses:
+        "200":
+          description: Roles returned successfully
+          content:
+            '*/*':
+              schema:
+                type: array
+                $ref: "#/components/schemas/Roles"
+  /getAllCustomers:
+    get:
+      tags:
+        - customer-rest
+      summary: Get all customers
+      description: Return all customers from the database
+      operationId: getAllUsers
+      responses:
+        "200":
+          description: Customers returned successfully
+          content:
+            '*/*':
+              schema:
+                type: array
+                $ref: "#/components/schemas/Customer"
+  /removeRole/{id}:
+    delete:
+      tags:
+        - Roles
+      summary: Remove a role
+      description: Remove an existing role based on the provided ID
+      operationId: removeRole
+      parameters:
+        - name: id
+          in: path
+          description: ID of the role to remove
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Role removed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Roles"
+        "404":
+          description: Role not found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Roles"
+  /removeCustomer/{id}:
+    delete:
+      tags:
+        - customer-rest
+      summary: Remove a customer
+      description: Remove an existing customer based on the provided ID
+      operationId: removeCustomer
+      parameters:
+        - name: id
+          in: path
+          description: ID of the customer to remove
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Customer removed successfully
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Customer"
+        "404":
+          description: Customer not found
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Customer"
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Roles"
+    Roles:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        roleName:
+          type: string
+        customerId:
+          type: integer
+          format: int64

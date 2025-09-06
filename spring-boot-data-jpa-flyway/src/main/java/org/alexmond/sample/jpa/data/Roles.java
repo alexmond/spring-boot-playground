@@ -12,4 +12,5 @@ public class Roles {
     private Long id;
     @Column(name = "role_name")
     private String roleName;
+    private Long customerId;
 }

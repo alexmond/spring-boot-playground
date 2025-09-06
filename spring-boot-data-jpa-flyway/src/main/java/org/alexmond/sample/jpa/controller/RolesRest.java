@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.alexmond.sample.jpa.data.Customer;
 import org.alexmond.sample.jpa.data.Roles;
 import org.alexmond.sample.jpa.repository.RolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@io.swagger.v3.oas.annotations.tags.Tag(name = "Roles", description = "Endpoints for managing roles")
 public class RolesRest {
     @Autowired
     RolesRepository rolesRepository;
@@ -63,12 +63,10 @@ public class RolesRest {
                     @ApiResponse(responseCode = "500", description = "Internal server error")
             }
     )
-    @PostMapping("/addRole/{roleName}")
-    public ResponseEntity<Roles> addRole(@PathVariable("roleName") String roleName){
-        Roles addedRole = new Roles();
-        addedRole.setRoleName(roleName);
-        rolesRepository.save(addedRole);
-        return ResponseEntity.ok(addedRole);
+    @PostMapping("/addRole")
+    public ResponseEntity<Roles> addRole(@RequestBody Roles role) {
+        rolesRepository.save(role);
+        return ResponseEntity.ok(role);
     }
 
     @Operation(

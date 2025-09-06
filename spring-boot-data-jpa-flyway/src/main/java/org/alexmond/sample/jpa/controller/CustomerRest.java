@@ -100,7 +100,7 @@ public class CustomerRest {
 
     @Operation(
             summary = "Add a customer",
-            description = "Creates a single customer with predefined data",
+            description = "Creates a single customer with data provided in request body",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Customer created successfully",
                             content = @Content(schema = @Schema(implementation = Customer.class))),
@@ -108,9 +108,9 @@ public class CustomerRest {
             }
     )
     @PostMapping("/addCustomer")
-    public ResponseEntity<Customer> addCustomer(){
-        Customer addedCustomer = addCustomerWithDetails("firstname", "lastname", "firstname_lastname@gmail.com");
-        return ResponseEntity.ok(addedCustomer);
+    public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) {
+        customerRepository.save(customer);
+        return ResponseEntity.ok(customer);
     }
 
     @Operation(

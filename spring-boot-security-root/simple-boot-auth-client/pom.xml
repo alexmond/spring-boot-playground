@@ -7,7 +7,6 @@
         <artifactId>spring-boot-security-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.alexmond</groupId>
     <artifactId>simple-boot-auth-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>simple-boot-auth-client</name>
@@ -26,7 +25,7 @@
         <url/>
     </scm>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
 

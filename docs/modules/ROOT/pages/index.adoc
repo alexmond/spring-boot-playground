@@ -1,0 +1,187 @@
+= Spring Boot Playground Modules
+:toc: left
+:sectnums:
+
+This project is a multi-module Spring Boot playground showcasing REST APIs, configuration, security, OpenAPI, JPA + Flyway, Thymeleaf MVC, Admin monitoring, and AI integrations.
+
+== Module Map
+
+- spring-boot-rest-sample — REST API basics
+- spring-boot-config-sample — Externalized configuration patterns
+- spring-boot-admin-server — Admin UI for monitoring apps
+- spring-boot-config-server — Centralized configuration service
+- spring-boot-data-jpa-flyway — Persistence + migrations
+- spring-boot-openapi-root — Parent for OpenAPI samples
+- spring-boot-thymeleaf — Server-side MVC with Thymeleaf
+- spring-boot-security-root — Parent for security samples
+- spring-boot-security-basic — Basic auth demo
+- spring-boot-security-jwt — JWT-based security demo
+- spring-boot-ai-samples — Spring AI integrations
+- openapi-sample (under spring-boot-openapi-root) — Concrete OpenAPI demo
+
+== spring-boot-rest-sample
+
+A reference REST service demonstrating:
+- CRUD endpoints with JSON payloads
+- Bean validation and error handling
+- Controller advice for exceptions
+- Meaningful HTTP status codes
+
+How to run:
+- mvn spring-boot:run
+- Explore endpoints under /api
+
+Learning goals:
+- Build clean REST controllers
+- Structure DTOs/validation
+- Centralize error responses
+
+== spring-boot-config-sample
+
+Externalized configuration patterns:
+- application.yaml + profiles
+- @ConfigurationProperties with validation
+- Metadata via configuration processor
+
+How to run:
+- Use -Dspring.profiles.active=dev|prod to switch environments
+
+Learning goals:
+- Safe, typed configuration binding
+- Profile-specific settings
+- Documenting configuration
+
+== spring-boot-admin-server
+
+Admin console to monitor Spring Boot apps:
+- Health, metrics, environment, logs
+- JVM info and endpoints overview
+
+How to run:
+- Start this server, then register client apps with admin client starter
+
+Learning goals:
+- Observability with minimal setup
+- Operational visibility for teams
+
+== spring-boot-config-server
+
+Centralized configuration with Spring Cloud Config:
+- Git-backed properties
+- Environment-specific files
+- Encryption/decryption support
+
+How to run:
+- Point spring.cloud.config.server.git.uri to a repo
+- Clients fetch configuration at bootstrap
+
+Learning goals:
+- Central config management
+- Safe secret handling and refresh
+
+== spring-boot-data-jpa-flyway
+
+Persistence + migrations:
+- Spring Data JPA repositories
+- Transactions and entity mapping
+- Flyway versioned migrations
+
+How to run:
+- mvn spring-boot:run (Flyway runs at startup)
+
+Learning goals:
+- Reliable schema evolution
+- Clean repository design
+- Testing data layers
+
+== spring-boot-openapi-root
+
+Parent for OpenAPI samples providing:
+- Dependency and plugin alignment
+- Shared conventions for documentation
+
+Learning goals:
+- Organizing API documentation across modules
+
+=== openapi-sample
+
+Concrete OpenAPI demo:
+- springdoc-openapi integration
+- Swagger UI
+- Schemas and validation annotations
+
+How to run:
+- mvn spring-boot:run
+- Visit /swagger-ui.html
+
+Learning goals:
+- API-first documentation
+- Accurate schemas and examples
+
+== spring-boot-thymeleaf
+
+Server-side MVC with Thymeleaf:
+- Templates, fragments, and layouts
+- Form binding and validation
+- I18n support
+
+How to run:
+- mvn spring-boot:run
+- Visit web UI routes
+
+Learning goals:
+- Productive SSR development
+- Clean template composition
+
+== spring-boot-security-root
+
+Parent for security samples:
+- Baseline dependencies
+- Shared configuration practices
+
+Learning goals:
+- Consistent security setup across modules
+
+=== spring-boot-security-basic
+
+Basic authentication:
+- In-memory users/roles
+- Form login and protected routes
+
+How to run:
+- mvn spring-boot:run
+- Access a protected endpoint to see login flow
+
+Learning goals:
+- Security filter chain basics
+- Method and URL-based authorization
+
+=== spring-boot-security-jwt
+
+JWT-based security:
+- Token issuance/validation
+- Stateless sessions
+- Role-based access
+
+How to run:
+- Obtain token via auth endpoint
+- Call protected APIs with Authorization: Bearer <token>
+
+Learning goals:
+- API security at scale
+- Token lifecycle and best practices
+
+== spring-boot-ai-samples
+
+AI integrations with Spring AI:
+- Chat/completions flows
+- Prompt engineering patterns
+- Retry and observability
+
+How to run:
+- Configure AI provider credentials via env/properties
+- mvn spring-boot:run
+
+Learning goals:
+- Safely integrate AI services
+- Reusable abstractions for AI features

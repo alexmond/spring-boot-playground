@@ -12,7 +12,20 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-openapi-root</name>
     <packaging>pom</packaging>
-    <description>spring-boot-openapi-root</description>
+    <description>Parent for OpenAPI samples. Demonstrates SpringDoc integration, Swagger UI, schema generation, and API documentation best practices across modules.</description>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Alex Mondshain</name>
+            <email>alex.mondshain@gmail.com</email>
+        </developer>
+    </developers>
     <modules>
         <module>spring-boot-openapi</module>
 <!--        <module>spring-boot-openapi-client</module>-->

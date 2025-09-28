@@ -7,13 +7,25 @@
         <artifactId>boot-sample-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.alexmond</groupId>
     <artifactId>spring-boot-data-jpa-flyway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-data-jpa-flyway</name>
-    <description>spring-boot-data-jpa-flyway</description>
+    <name>Spring Boot Data JPA with Flyway</name>
+    <description>Sample showing persistence with Spring Data JPA/Hibernate and database migrations with Flyway. Covers entities, repositories, transactions, CRUD, and schema versioning.</description>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Alex Mondshain</name>
+            <email>alex.mondshain@gmail.com</email>
+        </developer>
+    </developers>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -47,6 +59,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.alexmond</groupId>
+            <artifactId>spring-boot-config-json-schema-starter</artifactId>
+            <version>0.0.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

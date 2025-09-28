@@ -6,7 +6,22 @@
     <version>0.0.1-SNAPSHOT</version>
     <artifactId>boot-sample-root</artifactId>
     <packaging>pom</packaging>
-    <name>Spring boot samples root</name>
+    <name>Spring Boot Samples Root</name>
+    <description>A comprehensive multi-module Spring Boot playground demonstrating REST APIs, configuration management, security (basic and JWT), OpenAPI/Swagger integration, data persistence with JPA and Flyway, Thymeleaf MVC, admin monitoring, and AI integrations. Serves as a reference and learning resource for modern Spring Boot practices.</description>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Alex Mondshain</name>
+            <email>alex.mondshain@gmail.com</email>
+        </developer>
+    </developers>
+    
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

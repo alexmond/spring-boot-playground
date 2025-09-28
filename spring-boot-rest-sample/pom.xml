@@ -7,26 +7,25 @@
         <artifactId>boot-sample-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.alexmond</groupId>
     <artifactId>spring-boot-rest-sample</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>simple-boot-rest-sample</name>
-    <description>simple-boot-rest-sample</description>
-    <url/>
+    <name>Spring Boot REST API Sample</name>
+    <description>A Spring Boot REST sample showcasing CRUD endpoints, validation, exception handling, and proper HTTP semantics with JSON payloads. Useful as a template for building production-grade RESTful services.</description>
     <licenses>
-        <license/>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
     </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <name>Alex Mondshain</name>
+            <email>alex.mondshain@gmail.com</email>
+        </developer>
     </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -40,7 +39,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -49,5 +47,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

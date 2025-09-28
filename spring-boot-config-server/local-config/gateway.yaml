@@ -1,0 +1,77 @@
+
+cloud:
+  loadbalancer:
+    ribbon:
+      enabled: false
+    health-check:
+      initial-delay: 5
+      interval: 5
+  gateway:
+    discovery:
+      locator:
+        enabled: true
+    loadbalancer:
+      use404: true
+    metrics:
+      enabled: true
+    httpclient:
+      ssl:
+        useInsecureTrustManager: true
+      pool:
+        max-connections: 200
+    routes:
+      - id: PRD-EP-BROKER-INTERAC
+        uri: lb://PRD-EP-BROKER
+        predicates:
+          - Host=ep.signin.interac-id.ca
+        filters:
+          - PreserveHostHeader
+          - ExchangeGateway=/saml/SSO/alias/services.securekeyconcierge.com,/cbs,/cbs,/cbs
+          - name: CircuitBreaker
+            args:
+              name: exchange
+              fallbackUri: forward:/error
+      - id: PRD-GC-BROKER-INTERAC
+        uri: lb://PRD-GC-BROKER
+        predicates:
+          - Host=services.signin.interac-id.ca
+        filters:
+          - PreserveHostHeader
+          - ExchangeGateway=/saml/SSO/alias/services.securekeyconcierge.com,/cbs,/cbs,/cbs
+          - name: CircuitBreaker
+            args:
+              name: exchange
+              fallbackUri: forward:/error
+      - id: PRD-NT-BROKER-INTERAC
+        uri: lb://PRD-NT-BROKER
+        predicates:
+          - Host=nt.signin.interac-id.ca
+        filters:
+          - PreserveHostHeader
+          - ExchangeGateway=/saml/SSO/alias/services.securekeyconcierge.com,/cbs,/cbs,/cbs
+          - name: CircuitBreaker
+            args:
+              name: exchange
+              fallbackUri: forward:/error
+      - id: PRD-ON-BROKER-INTERAC
+        uri: lb://PRD-ON-BROKER
+        predicates:
+          - Host=on.signin.interac-id.ca
+        filters:
+          - PreserveHostHeader
+          - ExchangeGateway=/saml/SSO/alias/services.securekeyconcierge.com,/cbs,/cbs,/cbs
+          - name: CircuitBreaker
+            args:
+              name: exchange
+              fallbackUri: forward:/error
+      - id: PRD-QC-BROKER-INTERAC
+        uri: lb://PRD-QC-BROKER
+        predicates:
+          - Host=qc.signin.interac-id.ca
+        filters:
+          - PreserveHostHeader
+          - ExchangeGateway=/saml/SSO/alias/services.securekeyconcierge.com,/cbs,/cbs,/cbs
+          - name: CircuitBreaker
+            args:
+              name: exchange
+              fallbackUri: forward:/error

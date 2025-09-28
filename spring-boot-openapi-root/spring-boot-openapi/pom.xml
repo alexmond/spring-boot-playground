@@ -7,14 +7,19 @@
         <artifactId>spring-boot-openapi-root</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>org.alexmond</groupId>
     <artifactId>spring-boot-openapi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-openapi</name>
-    <description>spring-boot-openapi</description>
+    <description>Spring Boot OpenAPI integration module showcasing API documentation with Swagger UI and API
+        specification generation
+    </description>
     <url/>
     <licenses>
-        <license/>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
     </licenses>
     <developers>
         <developer/>
@@ -26,7 +31,7 @@
         <url/>
     </scm>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>

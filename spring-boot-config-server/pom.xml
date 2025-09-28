@@ -37,6 +37,11 @@
             <artifactId>spring-boot-admin-starter-client</artifactId>
             <version>${spring-boot-admin.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.alexmond</groupId>
+            <artifactId>spring-boot-config-json-schema-starter</artifactId>
+            <version>${spring-boot-config-json-schema.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -3,24 +3,24 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- description: Generated server url
-  url: http://localhost
+  - description: Generated server url
+    url: http://localhost
 tags:
-- description: User API
-  name: User Services
+  - description: User API
+    name: User Services
 paths:
   /api/v1/users/{id}:
     delete:
       operationId: deleteUser
       parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int32
-          type: integer
-        style: simple
+        - explode: false
+          in: path
+          name: id
+          required: true
+          schema:
+            format: int32
+            type: integer
+          style: simple
       responses:
         "200":
           content:
@@ -30,27 +30,27 @@ paths:
           description: User successfully deleted
       summary: Delete a user
       tags:
-      - User Services
+        - User Services
       x-accepts:
-      - application/json
+        - application/json
     put:
       operationId: updateUser
       parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          format: int32
-          type: integer
-        style: simple
-      - explode: true
-        in: query
-        name: newName
-        required: true
-        schema:
-          type: string
-        style: form
+        - explode: false
+          in: path
+          name: id
+          required: true
+          schema:
+            format: int32
+            type: integer
+          style: simple
+        - explode: true
+          in: query
+          name: newName
+          required: true
+          schema:
+            type: string
+          style: form
       responses:
         "200":
           content:
@@ -60,9 +60,9 @@ paths:
           description: User successfully updated
       summary: Update a user's name
       tags:
-      - User Services
+        - User Services
       x-accepts:
-      - application/json
+        - application/json
   /api/v1/users:
     get:
       operationId: getAllUsers
@@ -75,21 +75,21 @@ paths:
           description: Returns all users
       summary: Returns all users
       tags:
-      - User
-      - User Services
+        - User
+        - User Services
       x-accepts:
-      - application/json
+        - application/json
     post:
       operationId: register
       parameters:
-      - explode: true
-        in: query
-        name: name
-        required: false
-        schema:
-          default: Stranger
-          type: string
-        style: form
+        - explode: true
+          in: query
+          name: name
+          required: false
+          schema:
+            default: Stranger
+            type: string
+          style: form
       responses:
         "201":
           content:
@@ -99,9 +99,9 @@ paths:
           description: User successfully created
       summary: Register a new user
       tags:
-      - User Services
+        - User Services
       x-accepts:
-      - application/json
+        - application/json
   /hello:
     get:
       operationId: HelloWorld
@@ -113,9 +113,9 @@ paths:
                 type: string
           description: OK
       tags:
-      - hello-world-rest
+        - hello-world-rest
       x-accepts:
-      - '*/*'
+        - '*/*'
 components:
   schemas:
     User:
@@ -130,5 +130,5 @@ components:
           minLength: 1
           type: string
       required:
-      - name
+        - name
 

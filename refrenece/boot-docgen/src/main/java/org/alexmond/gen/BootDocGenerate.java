@@ -184,7 +184,7 @@ public class BootDocGenerate implements CommandLineRunner {
                 paths.add(e.nextElement());
             }
         } catch (Exception e) {
-            LOG.error("Error reading resources",e);
+            LOG.error("Error reading resources", e);
         }
 
         paths.forEach((URL path) -> {

@@ -44,9 +44,10 @@ public class HelloWorldRestApi {
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * <p><b>200</b> - OK
+     *
      * @return String
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
@@ -60,47 +61,53 @@ public class HelloWorldRestApi {
         final MultiValueMap<String, String> cookieParams = new LinkedMultiValueMap<>();
         final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<>();
 
-        final String[] localVarAccepts = { 
-            "*/*"
+        final String[] localVarAccepts = {
+                "*/*"
         };
         final List<MediaType> localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        final String[] localVarContentTypes = { };
+        final String[] localVarContentTypes = {};
         final MediaType localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
 
-        ParameterizedTypeReference<String> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<String> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return apiClient.invokeAPI("/hello", HttpMethod.GET, pathParams, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * <p><b>200</b> - OK
+     *
      * @return String
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public String helloWorld() throws RestClientResponseException {
-        ParameterizedTypeReference<String> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<String> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return helloWorldRequestCreation().body(localVarReturnType);
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * <p><b>200</b> - OK
+     *
      * @return ResponseEntity&lt;String&gt;
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public ResponseEntity<String> helloWorldWithHttpInfo() throws RestClientResponseException {
-        ParameterizedTypeReference<String> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<String> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return helloWorldRequestCreation().toEntity(localVarReturnType);
     }
 
     /**
-     * 
-     * 
+     *
+     *
      * <p><b>200</b> - OK
+     *
      * @return ResponseSpec
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */

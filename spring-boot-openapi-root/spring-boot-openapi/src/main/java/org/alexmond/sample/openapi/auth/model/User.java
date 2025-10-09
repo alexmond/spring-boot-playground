@@ -4,6 +4,15 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 /**
+ * Interface for entities that have an identifier.
+ *
+ * @param <T> the type of the identifier
+ */
+interface Identifiable<T> {
+    T getId();
+}
+
+/**
  * Represents a user entity in the system.
  * Implements Identifiable interface for consistent ID handling.
  */
@@ -28,13 +37,4 @@ public class User implements Identifiable<Integer> {
         }
         this.name = name;
     }
-}
-
-/**
- * Interface for entities that have an identifier.
- *
- * @param <T> the type of the identifier
- */
-interface Identifiable<T> {
-    T getId();
 }

@@ -9,7 +9,10 @@ import io.kubernetes.client.openapi.models.V1PodList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +23,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class KuberClientRest {
 
-    
+
     private final ApiClient apiClient;
 
     private CoreV1Api api() {
@@ -30,7 +33,7 @@ public class KuberClientRest {
     @GetMapping("/pods")
     public ResponseEntity<List<String>> getPods() {
         try {
-            V1PodList podList = api().listPodForAllNamespaces(null, null, null, null, null, null, null, null, null, null,null);
+            V1PodList podList = api().listPodForAllNamespaces(null, null, null, null, null, null, null, null, null, null, null);
             List<String> pods = podList.getItems().stream()
                     .map(pod -> pod.getMetadata().getName())
                     .collect(Collectors.toList());
@@ -44,7 +47,7 @@ public class KuberClientRest {
     @GetMapping("/pods/{namespace}")
     public ResponseEntity<List<String>> getPodsByNamespace(@PathVariable String namespace) {
         try {
-            V1PodList podList = api().listNamespacedPod(namespace, null, null, null, null, null, null, null, null, null, null,null);
+            V1PodList podList = api().listNamespacedPod(namespace, null, null, null, null, null, null, null, null, null, null, null);
             List<String> pods = podList.getItems().stream()
                     .map(pod -> pod.getMetadata().getName())
                     .collect(Collectors.toList());
@@ -58,7 +61,7 @@ public class KuberClientRest {
     @GetMapping("/pods/details/{name}")
     public ResponseEntity<V1Pod> getPodByName(@PathVariable String name) {
         try {
-            V1Pod pod = api().listPodForAllNamespaces(null, null, null, null, null, null, null, null, null, null,null)
+            V1Pod pod = api().listPodForAllNamespaces(null, null, null, null, null, null, null, null, null, null, null)
                     .getItems().stream()
                     .filter(p -> name.equals(p.getMetadata().getName()))
                     .findFirst()
@@ -73,7 +76,7 @@ public class KuberClientRest {
     @GetMapping("/pods/count")
     public ResponseEntity<Integer> getPodCount() {
         try {
-            int count = api().listPodForAllNamespaces(null, null, null, null, null, null, null, null, null, null,null)
+            int count = api().listPodForAllNamespaces(null, null, null, null, null, null, null, null, null, null, null)
                     .getItems()
                     .size();
             return ResponseEntity.ok(count);
@@ -86,7 +89,7 @@ public class KuberClientRest {
     @GetMapping("/namespaces")
     public ResponseEntity<List<String>> getNamespaces() {
         try {
-            V1NamespaceList namespaceList = api().listNamespace(null, null, null, null, null, null, null, null, null, null,null);
+            V1NamespaceList namespaceList = api().listNamespace(null, null, null, null, null, null, null, null, null, null, null);
             List<String> namespaces = namespaceList.getItems().stream()
                     .map(namespace -> namespace.getMetadata().getName())
                     .collect(Collectors.toList());

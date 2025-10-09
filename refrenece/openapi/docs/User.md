@@ -1,14 +1,11 @@
-
-
 # User
-
 
 ## Properties
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**id** | **Integer** |  |  [optional] |
-|**name** | **String** |  |  |
+| Name     | Type        | Description | Notes      |
+|----------|-------------|-------------|------------|
+| **id**   | **Integer** |             | [optional] |
+| **name** | **String**  |             |            |
 
 
 

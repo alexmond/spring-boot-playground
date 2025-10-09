@@ -2,11 +2,9 @@
 
 All URIs are relative to *http://localhost*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
+| Method                                    | HTTP request          | Description       |
+|-------------------------------------------|-----------------------|-------------------|
 | [**getAllUsers**](UserApi.md#getAllUsers) | **GET** /api/v1/users | Returns all users |
-
-
 
 ## getAllUsers
 
@@ -61,9 +59,9 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Returns all users |  -  |
+
+| Status code | Description       | Response headers |
+|-------------|-------------------|------------------|
+| **200**     | Returns all users | -                |
 

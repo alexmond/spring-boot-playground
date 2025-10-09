@@ -2,17 +2,13 @@
 
 All URIs are relative to *http://localhost*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**helloWorld**](HelloWorldRestApi.md#helloWorld) | **GET** /hello |  |
-
-
+| Method                                            | HTTP request   | Description |
+|---------------------------------------------------|----------------|-------------|
+| [**helloWorld**](HelloWorldRestApi.md#helloWorld) | **GET** /hello |             |
 
 ## helloWorld
 
 > String helloWorld()
-
-
 
 ### Example
 
@@ -61,9 +57,9 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: */*
 
-
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | OK |  -  |
+| **200**     | OK          | -                |
 

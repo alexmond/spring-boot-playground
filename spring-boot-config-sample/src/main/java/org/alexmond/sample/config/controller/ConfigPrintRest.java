@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ConfigPrintRest {
-@Autowired
-ConfigSample configSample;
+    @Autowired
+    ConfigSample configSample;
 
     @GetMapping("/")
-    public ConfigSample Config(){
+    public ConfigSample Config() {
 
         return configSample;
     }

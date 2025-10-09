@@ -123,19 +123,19 @@
         <div class="logo"><img alt="Sample Logo"
                                height="59"
         </div>
-    <ul class="menuList" id="list">
-        <th:block th:each="app: ${prop.getApps()}">
-            <li onClick="myFunction(this.getAttribute('data1'))" th:data1="${app.getId()}" th:id="${app.getId()}"
-                th:text="${app.getOrder()} + ' ' + ${app.getTitle()}">1. Credential Service Provider Properties
-            </li>
-        </th:block>
-    </ul>
-</div>
-<div class="content">
-    <iframe id="iframeContent" name="iframeContent" src="documentgenerator.html"></iframe>
-</div>
-<div class="footerHolder" id="footer">
-    <div class="footerRightText" th:text="${prop.getEffectiveDate()}">STUB</div>
-</div>
+        <ul class="menuList" id="list">
+            <th:block th:each="app: ${prop.getApps()}">
+                <li onClick="myFunction(this.getAttribute('data1'))" th:data1="${app.getId()}" th:id="${app.getId()}"
+                    th:text="${app.getOrder()} + ' ' + ${app.getTitle()}">1. Credential Service Provider Properties
+                </li>
+            </th:block>
+        </ul>
+    </div>
+    <div class="content">
+        <iframe id="iframeContent" name="iframeContent" src="documentgenerator.html"></iframe>
+    </div>
+    <div class="footerHolder" id="footer">
+        <div class="footerRightText" th:text="${prop.getEffectiveDate()}">STUB</div>
+    </div>
 </body>
 </html>

@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/forms")
 public class FormController {
-    
+
     @GetMapping("/demo")
     public String showFormDemo(Model model) {
         model.addAttribute("title", "Form Elements Demo");
@@ -21,14 +21,14 @@ public class FormController {
         model.addAttribute("hobbies", Arrays.asList("Reading", "Gaming", "Sports", "Music", "Travel"));
         return "forms/demo";
     }
-    
+
     @PostMapping("/demo")
     public String processForm(@RequestParam String name,
-                            @RequestParam String email,
-                            @RequestParam String country,
-                            @RequestParam(required = false) List<String> hobbies,
-                            @RequestParam String message,
-                            Model model) {
+                              @RequestParam String email,
+                              @RequestParam String country,
+                              @RequestParam(required = false) List<String> hobbies,
+                              @RequestParam String message,
+                              Model model) {
         model.addAttribute("title", "Form Submission Result");
         model.addAttribute("name", name);
         model.addAttribute("email", email);

@@ -1,21 +1,21 @@
 <div th:fragment="messages">
     <!-- Success messages -->
-    <div th:if="${success}" class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert" th:if="${success}">
         <span th:text="${success}"></span>
     </div>
-    
+
     <!-- Error messages -->
-    <div th:if="${error}" class="alert alert-error" role="alert">
+    <div class="alert alert-error" role="alert" th:if="${error}">
         <span th:text="${error}"></span>
     </div>
-    
+
     <!-- Info messages -->
-    <div th:if="${info}" class="alert alert-info" role="alert">
+    <div class="alert alert-info" role="alert" th:if="${info}">
         <span th:text="${info}"></span>
     </div>
-    
+
     <!-- Warning messages -->
-    <div th:if="${warning}" class="alert alert-warning" role="alert">
+    <div class="alert alert-warning" role="alert" th:if="${warning}">
         <span th:text="${warning}"></span>
     </div>
 </div>

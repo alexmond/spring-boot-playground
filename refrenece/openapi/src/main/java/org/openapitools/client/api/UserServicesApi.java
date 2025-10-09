@@ -46,8 +46,9 @@ public class UserServicesApi {
 
     /**
      * Delete a user
-     * 
+     *
      * <p><b>200</b> - User successfully deleted
+     *
      * @param id The id parameter
      * @return Boolean
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
@@ -68,49 +69,55 @@ public class UserServicesApi {
         final MultiValueMap<String, String> cookieParams = new LinkedMultiValueMap<>();
         final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<>();
 
-        final String[] localVarAccepts = { 
-            "application/json"
+        final String[] localVarAccepts = {
+                "application/json"
         };
         final List<MediaType> localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        final String[] localVarContentTypes = { };
+        final String[] localVarContentTypes = {};
         final MediaType localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
 
-        ParameterizedTypeReference<Boolean> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<Boolean> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return apiClient.invokeAPI("/api/v1/users/{id}", HttpMethod.DELETE, pathParams, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     }
 
     /**
      * Delete a user
-     * 
+     *
      * <p><b>200</b> - User successfully deleted
+     *
      * @param id The id parameter
      * @return Boolean
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public Boolean deleteUser(@jakarta.annotation.Nonnull Integer id) throws RestClientResponseException {
-        ParameterizedTypeReference<Boolean> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<Boolean> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return deleteUserRequestCreation(id).body(localVarReturnType);
     }
 
     /**
      * Delete a user
-     * 
+     *
      * <p><b>200</b> - User successfully deleted
+     *
      * @param id The id parameter
      * @return ResponseEntity&lt;Boolean&gt;
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public ResponseEntity<Boolean> deleteUserWithHttpInfo(@jakarta.annotation.Nonnull Integer id) throws RestClientResponseException {
-        ParameterizedTypeReference<Boolean> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<Boolean> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return deleteUserRequestCreation(id).toEntity(localVarReturnType);
     }
 
     /**
      * Delete a user
-     * 
+     *
      * <p><b>200</b> - User successfully deleted
+     *
      * @param id The id parameter
      * @return ResponseSpec
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
@@ -118,10 +125,12 @@ public class UserServicesApi {
     public ResponseSpec deleteUserWithResponseSpec(@jakarta.annotation.Nonnull Integer id) throws RestClientResponseException {
         return deleteUserRequestCreation(id);
     }
+
     /**
      * Returns all users
-     * 
+     *
      * <p><b>200</b> - Returns all users
+     *
      * @return User
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
@@ -135,57 +144,65 @@ public class UserServicesApi {
         final MultiValueMap<String, String> cookieParams = new LinkedMultiValueMap<>();
         final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<>();
 
-        final String[] localVarAccepts = { 
-            "application/json"
+        final String[] localVarAccepts = {
+                "application/json"
         };
         final List<MediaType> localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        final String[] localVarContentTypes = { };
+        final String[] localVarContentTypes = {};
         final MediaType localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
 
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return apiClient.invokeAPI("/api/v1/users", HttpMethod.GET, pathParams, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     }
 
     /**
      * Returns all users
-     * 
+     *
      * <p><b>200</b> - Returns all users
+     *
      * @return User
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public User getAllUsers() throws RestClientResponseException {
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return getAllUsersRequestCreation().body(localVarReturnType);
     }
 
     /**
      * Returns all users
-     * 
+     *
      * <p><b>200</b> - Returns all users
+     *
      * @return ResponseEntity&lt;User&gt;
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public ResponseEntity<User> getAllUsersWithHttpInfo() throws RestClientResponseException {
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return getAllUsersRequestCreation().toEntity(localVarReturnType);
     }
 
     /**
      * Returns all users
-     * 
+     *
      * <p><b>200</b> - Returns all users
+     *
      * @return ResponseSpec
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public ResponseSpec getAllUsersWithResponseSpec() throws RestClientResponseException {
         return getAllUsersRequestCreation();
     }
+
     /**
      * Register a new user
-     * 
+     *
      * <p><b>201</b> - User successfully created
+     *
      * @param name The name parameter
      * @return User
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
@@ -201,50 +218,56 @@ public class UserServicesApi {
         final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<>();
 
         queryParams.putAll(apiClient.parameterToMultiValueMap(null, "name", name));
-        
-        final String[] localVarAccepts = { 
-            "application/json"
+
+        final String[] localVarAccepts = {
+                "application/json"
         };
         final List<MediaType> localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        final String[] localVarContentTypes = { };
+        final String[] localVarContentTypes = {};
         final MediaType localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
 
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return apiClient.invokeAPI("/api/v1/users", HttpMethod.POST, pathParams, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     }
 
     /**
      * Register a new user
-     * 
+     *
      * <p><b>201</b> - User successfully created
+     *
      * @param name The name parameter
      * @return User
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public User register(@jakarta.annotation.Nullable String name) throws RestClientResponseException {
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return registerRequestCreation(name).body(localVarReturnType);
     }
 
     /**
      * Register a new user
-     * 
+     *
      * <p><b>201</b> - User successfully created
+     *
      * @param name The name parameter
      * @return ResponseEntity&lt;User&gt;
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public ResponseEntity<User> registerWithHttpInfo(@jakarta.annotation.Nullable String name) throws RestClientResponseException {
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return registerRequestCreation(name).toEntity(localVarReturnType);
     }
 
     /**
      * Register a new user
-     * 
+     *
      * <p><b>201</b> - User successfully created
+     *
      * @param name The name parameter
      * @return ResponseSpec
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
@@ -252,11 +275,13 @@ public class UserServicesApi {
     public ResponseSpec registerWithResponseSpec(@jakarta.annotation.Nullable String name) throws RestClientResponseException {
         return registerRequestCreation(name);
     }
+
     /**
      * Update a user&#39;s name
-     * 
+     *
      * <p><b>200</b> - User successfully updated
-     * @param id The id parameter
+     *
+     * @param id      The id parameter
      * @param newName The newName parameter
      * @return User
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
@@ -282,53 +307,59 @@ public class UserServicesApi {
         final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<>();
 
         queryParams.putAll(apiClient.parameterToMultiValueMap(null, "newName", newName));
-        
-        final String[] localVarAccepts = { 
-            "application/json"
+
+        final String[] localVarAccepts = {
+                "application/json"
         };
         final List<MediaType> localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        final String[] localVarContentTypes = { };
+        final String[] localVarContentTypes = {};
         final MediaType localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
 
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return apiClient.invokeAPI("/api/v1/users/{id}", HttpMethod.PUT, pathParams, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     }
 
     /**
      * Update a user&#39;s name
-     * 
+     *
      * <p><b>200</b> - User successfully updated
-     * @param id The id parameter
+     *
+     * @param id      The id parameter
      * @param newName The newName parameter
      * @return User
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public User updateUser(@jakarta.annotation.Nonnull Integer id, @jakarta.annotation.Nonnull String newName) throws RestClientResponseException {
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return updateUserRequestCreation(id, newName).body(localVarReturnType);
     }
 
     /**
      * Update a user&#39;s name
-     * 
+     *
      * <p><b>200</b> - User successfully updated
-     * @param id The id parameter
+     *
+     * @param id      The id parameter
      * @param newName The newName parameter
      * @return ResponseEntity&lt;User&gt;
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public ResponseEntity<User> updateUserWithHttpInfo(@jakarta.annotation.Nonnull Integer id, @jakarta.annotation.Nonnull String newName) throws RestClientResponseException {
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return updateUserRequestCreation(id, newName).toEntity(localVarReturnType);
     }
 
     /**
      * Update a user&#39;s name
-     * 
+     *
      * <p><b>200</b> - User successfully updated
-     * @param id The id parameter
+     *
+     * @param id      The id parameter
      * @param newName The newName parameter
      * @return ResponseSpec
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API

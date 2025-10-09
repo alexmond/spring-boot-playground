@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -32,18 +32,18 @@
                 <!-- RELEASE_VERSION -->
                 <version>7.14.0</version>
                 <!-- /RELEASE_VERSION -->
-<!--                <dependencies>-->
-<!--                    <dependency>-->
-<!--                        <groupId>${project.groupId}</groupId>-->
-<!--                        <artifactId>sample-schema</artifactId>-->
-<!--                        <version>${project.parent.version}</version>-->
-<!--                    </dependency>-->
-<!--                    <dependency>-->
-<!--                        <groupId>${project.groupId}</groupId>-->
-<!--                        <artifactId>sample-external-ref-schema</artifactId>-->
-<!--                        <version>${project.parent.version}</version>-->
-<!--                    </dependency>-->
-<!--                </dependencies>-->
+                <!--                <dependencies>-->
+                <!--                    <dependency>-->
+                <!--                        <groupId>${project.groupId}</groupId>-->
+                <!--                        <artifactId>sample-schema</artifactId>-->
+                <!--                        <version>${project.parent.version}</version>-->
+                <!--                    </dependency>-->
+                <!--                    <dependency>-->
+                <!--                        <groupId>${project.groupId}</groupId>-->
+                <!--                        <artifactId>sample-external-ref-schema</artifactId>-->
+                <!--                        <version>${project.parent.version}</version>-->
+                <!--                    </dependency>-->
+                <!--                </dependencies>-->
                 <executions>
                     <execution>
                         <id>default</id>
@@ -61,14 +61,14 @@
                                  you can use the following target: <generatorName>spring</generatorName> -->
 
                             <!-- pass any necessary config options -->
-<!--                            <configOptions>-->
-<!--                                <dateLibrary>joda</dateLibrary>-->
-<!--                            </configOptions>-->
+                            <!--                            <configOptions>-->
+                            <!--                                <dateLibrary>joda</dateLibrary>-->
+                            <!--                            </configOptions>-->
 
                             <!-- override the default library to jersey2 -->
-                                <library>restclient</library>
+                            <library>restclient</library>
                             <configOptions>
-<!--                                <delegatePattern>true</delegatePattern>-->
+                                <!--                                <delegatePattern>true</delegatePattern>-->
                                 <useSpringBoot3>true</useSpringBoot3>
                             </configOptions>
                         </configuration>

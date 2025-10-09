@@ -20,7 +20,7 @@ public class User {
     private UserRole role;
     private List<String> interests;
     private Address address;
-    
+
     public String getFullName() {
         return firstName + " " + lastName;
     }

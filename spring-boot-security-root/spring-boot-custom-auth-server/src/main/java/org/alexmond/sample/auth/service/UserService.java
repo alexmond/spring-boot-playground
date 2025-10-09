@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class UserService {
-    
+
     private final List<User> users = new ArrayList<>();
     private final AtomicLong idGenerator = new AtomicLong(1);
 
@@ -21,20 +21,20 @@ public class UserService {
     public UserService(AuthConfig authConfig) {
         // Initialize with sample data
         this.authConfig = authConfig;
-        authConfig.getUserConfigs().forEach(config -> users.add( new User(idGenerator.getAndIncrement(),config)));
+        authConfig.getUserConfigs().forEach(config -> users.add(new User(idGenerator.getAndIncrement(), config)));
     }
-    
+
     public List<User> getAllUsers() {
         return new ArrayList<>(users);
     }
-    
+
     public User getUserById(Long id) {
         return users.stream()
                 .filter(user -> user.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
-    
+
     public void saveUser(User user) {
         if (user.getId() == null) {
             user.setId(idGenerator.getAndIncrement());
@@ -46,7 +46,7 @@ public class UserService {
             }
         }
     }
-    
+
     public void deleteUser(Long id) {
         users.removeIf(user -> user.getId().equals(id));
     }

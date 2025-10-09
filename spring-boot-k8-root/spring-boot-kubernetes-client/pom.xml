@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -10,7 +10,10 @@
     <artifactId>spring-boot-kubernetes-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Spring Boot Configuration Sample</name>
-    <description>Demonstrates externalized configuration with Spring Boot: properties/YAML, profiles, @ConfigurationProperties binding with validation, and configuration metadata generation. Provides patterns for maintainable, environment-aware application settings.</description>
+    <description>Demonstrates externalized configuration with Spring Boot: properties/YAML, profiles,
+        @ConfigurationProperties binding with validation, and configuration metadata generation. Provides patterns for
+        maintainable, environment-aware application settings.
+    </description>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -24,7 +27,7 @@
             <email>alex.mondshain@gmail.com</email>
         </developer>
     </developers>
-    
+
     <properties>
         <java.version>17</java.version>
     </properties>

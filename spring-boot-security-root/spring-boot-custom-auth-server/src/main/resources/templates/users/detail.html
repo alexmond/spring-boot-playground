@@ -2,99 +2,99 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title th:text="${title}">User Details</title>
-    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="fas fa-leaf"></i> Thymeleaf Demo
-            </a>
-            <div class="navbar-nav">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link active" href="/users">Users</a>
-                <a class="nav-link" href="/products">Products</a>
-                <a class="nav-link" href="/forms/demo">Forms</a>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-leaf"></i> Thymeleaf Demo
+        </a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link active" href="/users">Users</a>
+            <a class="nav-link" href="/products">Products</a>
+            <a class="nav-link" href="/forms/demo">Forms</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="mb-4" th:text="${title}">User Details</h1>
-                
-                <div class="mb-3">
-                    <a href="/users" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> Back to Users
-                    </a>
-                    <a th:href="@{/users/edit/{id}(id=${user.id})}" class="btn btn-warning">
-                        <i class="fas fa-edit"></i> Edit User
-                    </a>
-                </div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4" th:text="${title}">User Details</h1>
 
-                <div th:if="${user}" class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h5>Personal Information</h5>
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <td><strong>ID:</strong></td>
-                                        <td th:text="${user.id}">1</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Full Name:</strong></td>
-                                        <td th:text="${user.fullName}">John Doe</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Username:</strong></td>
-                                        <td th:text="${user.username}">John Doe</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Password:</strong></td>
-                                        <td th:text="${user.password}">John Doe</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Email:</strong></td>
-                                        <td th:text="${user.email}">john@example.com</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Role:</strong></td>
-                                        <td>
-                                            <span th:text="${user.role.displayName}"
-                                                  class="badge"
+            <div class="mb-3">
+                <a class="btn btn-secondary" href="/users">
+                    <i class="fas fa-arrow-left"></i> Back to Users
+                </a>
+                <a class="btn btn-warning" th:href="@{/users/edit/{id}(id=${user.id})}">
+                    <i class="fas fa-edit"></i> Edit User
+                </a>
+            </div>
+
+            <div class="card" th:if="${user}">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Personal Information</h5>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td><strong>ID:</strong></td>
+                                    <td th:text="${user.id}">1</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Full Name:</strong></td>
+                                    <td th:text="${user.fullName}">John Doe</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Username:</strong></td>
+                                    <td th:text="${user.username}">John Doe</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Password:</strong></td>
+                                    <td th:text="${user.password}">John Doe</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email:</strong></td>
+                                    <td th:text="${user.email}">john@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Role:</strong></td>
+                                    <td>
+                                            <span class="badge"
                                                   th:classappend="${user.role.name() == 'ADMIN'} ? 'bg-danger' :
-                                                                 (${user.role.name() == 'MODERATOR'} ? 'bg-warning' : 'bg-info')">
+                                                                 (${user.role.name() == 'MODERATOR'} ? 'bg-warning' : 'bg-info')"
+                                                  th:text="${user.role.displayName}">
                                                 User
                                             </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Status:</strong></td>
-                                        <td>
-                                            <span th:if="${user.active}" class="badge bg-success">Active</span>
-                                            <span th:unless="${user.active}" class="badge bg-secondary">Inactive</span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Status:</strong></td>
+                                    <td>
+                                        <span class="badge bg-success" th:if="${user.active}">Active</span>
+                                        <span class="badge bg-secondary" th:unless="${user.active}">Inactive</span>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
-
-                <div th:unless="${user}" class="alert alert-danger">
-                    <i class="fas fa-exclamation-triangle"></i> User not found.
-                </div>
             </div>
         </div>
-    </div>
 
-    <th:block th:fragment="scripts">
+        <div class="alert alert-danger" th:unless="${user}">
+            <i class="fas fa-exclamation-triangle"></i> User not found.
+        </div>
+    </div>
+</div>
+</div>
+
+<th:block th:fragment="scripts">
     <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </th:block>
 </body>

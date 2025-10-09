@@ -46,8 +46,9 @@ public class UserApi {
 
     /**
      * Returns all users
-     * 
+     *
      * <p><b>200</b> - Returns all users
+     *
      * @return User
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
@@ -61,47 +62,53 @@ public class UserApi {
         final MultiValueMap<String, String> cookieParams = new LinkedMultiValueMap<>();
         final MultiValueMap<String, Object> formParams = new LinkedMultiValueMap<>();
 
-        final String[] localVarAccepts = { 
-            "application/json"
+        final String[] localVarAccepts = {
+                "application/json"
         };
         final List<MediaType> localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        final String[] localVarContentTypes = { };
+        final String[] localVarContentTypes = {};
         final MediaType localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
 
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return apiClient.invokeAPI("/api/v1/users", HttpMethod.GET, pathParams, queryParams, postBody, headerParams, cookieParams, formParams, localVarAccept, localVarContentType, localVarAuthNames, localVarReturnType);
     }
 
     /**
      * Returns all users
-     * 
+     *
      * <p><b>200</b> - Returns all users
+     *
      * @return User
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public User getAllUsers() throws RestClientResponseException {
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return getAllUsersRequestCreation().body(localVarReturnType);
     }
 
     /**
      * Returns all users
-     * 
+     *
      * <p><b>200</b> - Returns all users
+     *
      * @return ResponseEntity&lt;User&gt;
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */
     public ResponseEntity<User> getAllUsersWithHttpInfo() throws RestClientResponseException {
-        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<User> localVarReturnType = new ParameterizedTypeReference<>() {
+        };
         return getAllUsersRequestCreation().toEntity(localVarReturnType);
     }
 
     /**
      * Returns all users
-     * 
+     *
      * <p><b>200</b> - Returns all users
+     *
      * @return ResponseSpec
      * @throws RestClientResponseException if an error occurs while attempting to invoke the API
      */

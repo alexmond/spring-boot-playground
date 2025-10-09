@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -12,7 +12,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-ai-root</name>
     <packaging>pom</packaging>
-    <description>Examples integrating Spring AI/OpenAI with Spring Boot: chat workflows, prompt engineering, retries, and configuration for AI-backed features.</description>
+    <description>Examples integrating Spring AI/OpenAI with Spring Boot: chat workflows, prompt engineering, retries,
+        and configuration for AI-backed features.
+    </description>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -26,7 +28,7 @@
             <email>alex.mondshain@gmail.com</email>
         </developer>
     </developers>
-<modules>
-    <module>spring-boot-ai-sample</module>
-</modules>
+    <modules>
+        <module>spring-boot-ai-sample</module>
+    </modules>
 </project>

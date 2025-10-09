@@ -1,4 +1,3 @@
-
 package org.alexmond.sample.thymeleaf.auth.model;
 
 import lombok.AllArgsConstructor;

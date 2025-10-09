@@ -45,7 +45,10 @@ public class CustomRestAuthenticationProvider implements AuthenticationProvider 
     }
 
     // DTOs matching the remote service
-    public record AuthRequest(String username, String password) { }
-    public record AuthResponse(String message) { }
+    public record AuthRequest(String username, String password) {
+    }
+
+    public record AuthResponse(String message) {
+    }
 
 }

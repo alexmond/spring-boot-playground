@@ -2,14 +2,12 @@
 
 All URIs are relative to *http://localhost*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**deleteUser**](UserServicesApi.md#deleteUser) | **DELETE** /api/v1/users/{id} | Delete a user |
-| [**getAllUsers**](UserServicesApi.md#getAllUsers) | **GET** /api/v1/users | Returns all users |
-| [**register**](UserServicesApi.md#register) | **POST** /api/v1/users | Register a new user |
-| [**updateUser**](UserServicesApi.md#updateUser) | **PUT** /api/v1/users/{id} | Update a user&#39;s name |
-
-
+| Method                                            | HTTP request                  | Description              |
+|---------------------------------------------------|-------------------------------|--------------------------|
+| [**deleteUser**](UserServicesApi.md#deleteUser)   | **DELETE** /api/v1/users/{id} | Delete a user            |
+| [**getAllUsers**](UserServicesApi.md#getAllUsers) | **GET** /api/v1/users         | Returns all users        |
+| [**register**](UserServicesApi.md#register)       | **POST** /api/v1/users        | Register a new user      |
+| [**updateUser**](UserServicesApi.md#updateUser)   | **PUT** /api/v1/users/{id}    | Update a user&#39;s name |
 
 ## deleteUser
 
@@ -50,10 +48,9 @@ public class Example {
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **Integer**|  | |
+| Name   | Type        | Description | Notes |
+|--------|-------------|-------------|-------|
+| **id** | **Integer** |             |       |
 
 ### Return type
 
@@ -68,12 +65,11 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | User successfully deleted |  -  |
 
+| Status code | Description               | Response headers |
+|-------------|---------------------------|------------------|
+| **200**     | User successfully deleted | -                |
 
 ## getAllUsers
 
@@ -128,12 +124,11 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Returns all users |  -  |
 
+| Status code | Description       | Response headers |
+|-------------|-------------------|------------------|
+| **200**     | Returns all users | -                |
 
 ## register
 
@@ -174,10 +169,9 @@ public class Example {
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**|  | [optional] [default to Stranger] |
+| Name     | Type       | Description | Notes                            |
+|----------|------------|-------------|----------------------------------|
+| **name** | **String** |             | [optional] [default to Stranger] |
 
 ### Return type
 
@@ -192,12 +186,11 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | User successfully created |  -  |
 
+| Status code | Description               | Response headers |
+|-------------|---------------------------|------------------|
+| **201**     | User successfully created | -                |
 
 ## updateUser
 
@@ -239,11 +232,10 @@ public class Example {
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **id** | **Integer**|  | |
-| **newName** | **String**|  | |
+| Name        | Type        | Description | Notes |
+|-------------|-------------|-------------|-------|
+| **id**      | **Integer** |             |       |
+| **newName** | **String**  |             |       |
 
 ### Return type
 
@@ -258,9 +250,9 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | User successfully updated |  -  |
+
+| Status code | Description               | Response headers |
+|-------------|---------------------------|------------------|
+| **200**     | User successfully updated | -                |
 

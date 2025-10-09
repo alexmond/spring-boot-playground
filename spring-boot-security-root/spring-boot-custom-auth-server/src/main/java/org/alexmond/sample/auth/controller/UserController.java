@@ -13,10 +13,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")
 public class UserController {
-    
+
     @Autowired
     private UserService userService;
-    
+
     @GetMapping
     public String listUsers(Model model) {
         List<User> users = userService.getAllUsers();
@@ -24,7 +24,7 @@ public class UserController {
         model.addAttribute("title", "User Management");
         return "users/list";
     }
-    
+
     @GetMapping("/{id}")
     public String viewUser(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id);
@@ -32,7 +32,7 @@ public class UserController {
         model.addAttribute("title", "User Details");
         return "users/detail";
     }
-    
+
     @GetMapping("/add")
     public String addUserForm(Model model) {
         model.addAttribute("user", new User());
@@ -40,13 +40,13 @@ public class UserController {
         model.addAttribute("title", "Add New User");
         return "users/form";
     }
-    
+
     @PostMapping("/add")
     public String addUser(@ModelAttribute User user) {
         userService.saveUser(user);
         return "redirect:/users";
     }
-    
+
     @GetMapping("/edit/{id}")
     public String editUserForm(@PathVariable Long id, Model model) {
         User user = userService.getUserById(id);
@@ -55,14 +55,14 @@ public class UserController {
         model.addAttribute("title", "Edit User");
         return "users/form";
     }
-    
+
     @PostMapping("/edit/{id}")
     public String editUser(@PathVariable Long id, @ModelAttribute User user) {
         user.setId(id);
         userService.saveUser(user);
         return "redirect:/users";
     }
-    
+
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);

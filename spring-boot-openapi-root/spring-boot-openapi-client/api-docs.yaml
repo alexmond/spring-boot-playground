@@ -3,30 +3,30 @@ info:
   title: OpenAPI definition
   version: v0
 servers:
-- url: http://localhost
-  description: Generated server url
+  - url: http://localhost
+    description: Generated server url
 tags:
-- name: User Services
-  description: User API
+  - name: User Services
+    description: User API
 paths:
   /api/v1/users/{id}:
     put:
       tags:
-      - User Services
+        - User Services
       summary: Update a user's name
       operationId: updateUser
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int32
-      - name: newName
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: newName
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
         "200":
           description: User successfully updated
@@ -36,16 +36,16 @@ paths:
                 $ref: "#/components/schemas/User"
     delete:
       tags:
-      - User Services
+        - User Services
       summary: Delete a user
       operationId: deleteUser
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int32
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
       responses:
         "200":
           description: User successfully deleted
@@ -56,8 +56,8 @@ paths:
   /api/v1/users:
     get:
       tags:
-      - User
-      - User Services
+        - User
+        - User Services
       summary: Returns all users
       operationId: getAllUsers
       responses:
@@ -69,16 +69,16 @@ paths:
                 $ref: "#/components/schemas/User"
     post:
       tags:
-      - User Services
+        - User Services
       summary: Register a new user
       operationId: register
       parameters:
-      - name: name
-        in: query
-        required: false
-        schema:
-          type: string
-          default: Stranger
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+            default: Stranger
       responses:
         "201":
           description: User successfully created
@@ -89,7 +89,7 @@ paths:
   /hello:
     get:
       tags:
-      - hello-world-rest
+        - hello-world-rest
       operationId: HelloWorld
       responses:
         "200":
@@ -110,4 +110,4 @@ components:
           type: string
           minLength: 1
       required:
-      - name
+        - name

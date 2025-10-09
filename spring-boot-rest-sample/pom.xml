@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -10,7 +10,9 @@
     <artifactId>spring-boot-rest-sample</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Spring Boot REST API Sample</name>
-    <description>A Spring Boot REST sample showcasing CRUD endpoints, validation, exception handling, and proper HTTP semantics with JSON payloads. Useful as a template for building production-grade RESTful services.</description>
+    <description>A Spring Boot REST sample showcasing CRUD endpoints, validation, exception handling, and proper HTTP
+        semantics with JSON payloads. Useful as a template for building production-grade RESTful services.
+    </description>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>

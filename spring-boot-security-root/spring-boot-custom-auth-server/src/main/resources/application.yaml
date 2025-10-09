@@ -2,9 +2,9 @@ spring:
   application:
     name: spring-boot-auth-server
 
-    
+
 auth:
-  user-configs: 
+  user-configs:
     - username: test1
       password: test1
       role: user

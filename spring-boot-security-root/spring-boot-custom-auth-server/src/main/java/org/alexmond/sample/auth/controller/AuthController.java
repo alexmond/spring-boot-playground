@@ -33,7 +33,7 @@ public class AuthController {
             @Parameter(description = "Authentication credentials") @RequestBody AuthRequest request) {
         log.info("Authentication attempt for user: {}", request.getUsername());
         boolean isAuthenticated = userService.authenticate(request.getUsername(), request.getPassword());
-        
+
         if (isAuthenticated) {
             log.info("Authentication successful for user: {}", request.getUsername());
             return ResponseEntity.ok(new AuthResponse("Authentication successful"));

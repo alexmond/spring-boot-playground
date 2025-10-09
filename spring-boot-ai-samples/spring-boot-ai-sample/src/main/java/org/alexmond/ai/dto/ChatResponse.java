@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 public class ChatResponse {
-    
+
     private String userMessage;
     private String aiResponse;
     private LocalDateTime timestamp;

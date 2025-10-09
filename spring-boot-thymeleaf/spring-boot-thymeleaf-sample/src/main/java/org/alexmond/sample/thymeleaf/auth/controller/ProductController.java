@@ -14,14 +14,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/products")
 public class ProductController {
-    
+
     @Autowired
     private ProductService productService;
-    
+
     @GetMapping
-    public String listProducts(Model model, 
-                             @RequestParam(required = false) String category,
-                             @RequestParam(required = false) String search) {
+    public String listProducts(Model model,
+                               @RequestParam(required = false) String category,
+                               @RequestParam(required = false) String search) {
         List<Product> products = productService.getProducts(category, search);
         model.addAttribute("products", products);
         model.addAttribute("categories", productService.getAllCategories());
@@ -30,7 +30,7 @@ public class ProductController {
         model.addAttribute("title", "Product Catalog");
         return "products/list";
     }
-    
+
     @GetMapping("/featured")
     public String featuredProducts(Model model) {
         List<Product> products = productService.getFeaturedProducts();

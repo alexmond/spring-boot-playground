@@ -1,19 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Kubernetes and Sample REST Operations</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 32px; line-height: 1.5; }
-        h1 { margin-bottom: 8px; }
-        .section { margin: 24px 0; padding: 16px; border: 1px solid #ddd; border-radius: 6px; }
-        .section h2 { margin-top: 0; }
-        .row { display: flex; gap: 8px; align-items: center; margin: 6px 0; }
-        input, button, select { padding: 6px 8px; }
-        code, pre { background: #f7f7f7; padding: 8px; border-radius: 4px; display: block; overflow: auto; }
-        .links a { margin-right: 12px; }
-        .result { margin-top: 10px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 32px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .section {
+            margin: 24px 0;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .section h2 {
+            margin-top: 0;
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin: 6px 0;
+        }
+
+        input, button, select {
+            padding: 6px 8px;
+        }
+
+        code, pre {
+            background: #f7f7f7;
+            padding: 8px;
+            border-radius: 4px;
+            display: block;
+            overflow: auto;
+        }
+
+        .links a {
+            margin-right: 12px;
+        }
+
+        .result {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -30,13 +68,13 @@
 
     <div class="row">
         <label for="nsInput">GET /pods/{namespace}:</label>
-        <input id="nsInput" type="text" placeholder="e.g. kube-system"/>
+        <input id="nsInput" placeholder="e.g. kube-system" type="text"/>
         <button onclick="openGet(`/pods/${encodeURIComponent(val('nsInput'))}`)">Open</button>
     </div>
 
     <div class="row">
         <label for="podDetailsInput">GET /pods/details/{name}:</label>
-        <input id="podDetailsInput" type="text" placeholder="pod-name"/>
+        <input id="podDetailsInput" placeholder="pod-name" type="text"/>
         <button onclick="openGet(`/pods/details/${encodeURIComponent(val('podDetailsInput'))}`)">Open</button>
     </div>
 </div>

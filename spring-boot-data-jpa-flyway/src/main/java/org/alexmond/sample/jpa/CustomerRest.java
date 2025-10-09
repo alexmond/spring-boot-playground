@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class CustomerRest {
     @Autowired
     CustomerRepository customerRepository;
+
     @GetMapping("/getAllCustomers")
-    public String getAllUsers(){
+    public String getAllUsers() {
         return customerRepository.findAll().toString();
     }
 }

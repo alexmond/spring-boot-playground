@@ -2,89 +2,90 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title th:text="${title}">Form Demo</title>
-    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/webjars/font-awesome/css/all.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.min.css}">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="fas fa-leaf"></i> Thymeleaf Demo
-            </a>
-            <div class="navbar-nav">
-                <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/users">Users</a>
-                <a class="nav-link" href="/products">Products</a>
-                <a class="nav-link active" href="/forms/demo">Forms</a>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-leaf"></i> Thymeleaf Demo
+        </a>
+        <div class="navbar-nav">
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/users">Users</a>
+            <a class="nav-link" href="/products">Products</a>
+            <a class="nav-link active" href="/forms/demo">Forms</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                <h1 class="mb-4" th:text="${title}">Form Elements Demo</h1>
-                
-                <div class="card">
-                    <div class="card-body">
-                        <form method="post" action="/forms/demo">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="name" name="name" 
-                                       placeholder="Enter your full name" required>
-                            </div>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4" th:text="${title}">Form Elements Demo</h1>
 
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" name="email" 
-                                       placeholder="Enter your email" required>
-                            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/forms/demo" method="post">
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Full Name</label>
+                            <input class="form-control" id="name" name="name" placeholder="Enter your full name"
+                                   required type="text">
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="country" class="form-label">Country</label>
-                                <select class="form-select" id="country" name="country" required>
-                                    <option value="">Select a country</option>
-                                    <option th:each="country : ${countries}" 
-                                            th:value="${country}" 
-                                            th:text="${country}">Country</option>
-                                </select>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input class="form-control" id="email" name="email" placeholder="Enter your email"
+                                   required type="email">
+                        </div>
 
-                            <div class="mb-3">
-                                <label class="form-label">Hobbies</label>
-                                <div th:each="hobby : ${hobbies}">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" 
-                                               th:id="${'hobby-' + hobby}" 
-                                               name="hobbies" 
-                                               th:value="${hobby}">
-                                        <label class="form-check-label" th:for="${'hobby-' + hobby}" 
-                                               th:text="${hobby}">Hobby</label>
-                                    </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="country">Country</label>
+                            <select class="form-select" id="country" name="country" required>
+                                <option value="">Select a country</option>
+                                <option th:each="country : ${countries}"
+                                        th:text="${country}"
+                                        th:value="${country}">Country
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Hobbies</label>
+                            <div th:each="hobby : ${hobbies}">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="hobbies"
+                                           th:id="${'hobby-' + hobby}"
+                                           th:value="${hobby}"
+                                           type="checkbox">
+                                    <label class="form-check-label" th:for="${'hobby-' + hobby}"
+                                           th:text="${hobby}">Hobby</label>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control" id="message" name="message" 
-                                          rows="4" placeholder="Enter your message"></textarea>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea class="form-control" id="message" name="message"
+                                      placeholder="Enter your message" rows="4"></textarea>
+                        </div>
 
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-paper-plane"></i> Submit Form
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                        <div class="d-grid">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-paper-plane"></i> Submit Form
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <th:block th:fragment="scripts">
+<th:block th:fragment="scripts">
     <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
 </th:block>
 </body>

@@ -10,12 +10,12 @@ import org.springframework.web.client.RestClient;
 @Slf4j
 public class HelloWorldRest {
     @GetMapping("/")
-    public String HelloWorld(){
+    public String HelloWorld() {
         return "Hello World";
     }
 
     @GetMapping("/restlogin")
-    public  String authrest() {
+    public String authrest() {
         RestClient restClient = RestClient.builder()
                 .baseUrl("http://localhost:8081/api/auth")
                 .build();
@@ -36,7 +36,10 @@ public class HelloWorldRest {
     }
 
     // DTOs (copy the definition to match your API)
-    public record AuthRequest(String username, String password) {}
-    public record AuthResponse(String message) {}
+    public record AuthRequest(String username, String password) {
+    }
+
+    public record AuthResponse(String message) {
+    }
 
 }

@@ -11,6 +11,6 @@ public class HttpExchangeConfiguration {
     public InMemoryHttpExchangeRepository createTraceRepository() {
         InMemoryHttpExchangeRepository inMemoryHttpExchangeRepository = new InMemoryHttpExchangeRepository();
         inMemoryHttpExchangeRepository.setCapacity(200);
-        return  inMemoryHttpExchangeRepository;
+        return inMemoryHttpExchangeRepository;
     }
 }

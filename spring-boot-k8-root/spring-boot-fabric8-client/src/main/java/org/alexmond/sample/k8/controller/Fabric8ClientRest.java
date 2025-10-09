@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 public class Fabric8ClientRest {
-    
+
     private final KubernetesClient kubernetesClient;
 
 

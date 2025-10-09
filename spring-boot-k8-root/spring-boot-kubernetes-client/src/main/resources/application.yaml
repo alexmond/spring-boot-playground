@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: test
+  main:
+    cloud-platform: kubernetes
+
+
+
+

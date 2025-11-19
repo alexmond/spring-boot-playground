@@ -8,12 +8,12 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-ai-samples</artifactId>
+    <artifactId>spring-boot-openapi-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-ai-parent</name>
+    <name>spring-boot-openapi-parent</name>
     <packaging>pom</packaging>
-    <description>Examples integrating Spring AI/OpenAI with Spring Boot: chat workflows, prompt engineering, retries,
-        and configuration for AI-backed features.
+    <description>Parent for OpenAPI samples. Demonstrates SpringDoc integration, Swagger UI, schema generation, and API
+        documentation best practices across modules.
     </description>
     <licenses>
         <license>
@@ -29,6 +29,7 @@
         </developer>
     </developers>
     <modules>
-        <module>spring-boot-ai-sample</module>
+        <module>spring-boot-openapi</module>
+        <!--        <module>spring-boot-openapi-client</module>-->
     </modules>
 </project>

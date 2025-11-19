@@ -4,28 +4,32 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.alexmond</groupId>
-        <artifactId>boot-sample-parent</artifactId>
+        <artifactId>spring-boot-openapi-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>spring-boot-rest-sample</artifactId>
+    <artifactId>spring-boot-openapi</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Spring Boot REST API Sample</name>
-    <description>A Spring Boot REST sample showcasing CRUD endpoints, validation, exception handling, and proper HTTP
-        semantics with JSON payloads. Useful as a template for building production-grade RESTful services.
+    <name>spring-boot-openapi</name>
+    <description>Spring Boot OpenAPI integration module showcasing API documentation with Swagger UI and API
+        specification generation
     </description>
+    <url/>
     <licenses>
         <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
     <developers>
-        <developer>
-            <name>Alex Mondshain</name>
-            <email>alex.mondshain@gmail.com</email>
-        </developer>
+        <developer/>
     </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -34,13 +38,27 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.8.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -49,4 +67,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.alexmond</groupId>
     <version>0.0.1-SNAPSHOT</version>
-    <artifactId>boot-sample-root</artifactId>
+    <artifactId>boot-sample-parent</artifactId>
     <packaging>pom</packaging>
     <name>Spring Boot Samples Root</name>
     <description>A comprehensive multi-module Spring Boot playground demonstrating REST APIs, configuration management,
@@ -54,10 +54,10 @@
         <module>spring-boot-admin-server</module>
         <module>spring-boot-config-server</module>
         <module>spring-boot-data-jpa-flyway</module>
-        <module>spring-boot-openapi-root</module>
+        <module>spring-boot-openapi-parent</module>
         <module>spring-boot-thymeleaf</module>
-        <module>spring-boot-security-root</module>
+        <module>spring-boot-security-parent</module>
         <module>spring-boot-ai-samples</module>
-        <module>spring-boot-k8-root</module>
+        <module>spring-boot-k8-parent</module>
     </modules>
 </project>

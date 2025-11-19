@@ -8,12 +8,12 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-ai-samples</artifactId>
+    <artifactId>spring-boot-k8-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-ai-parent</name>
+    <name>spring-boot-k8-parent</name>
     <packaging>pom</packaging>
-    <description>Examples integrating Spring AI/OpenAI with Spring Boot: chat workflows, prompt engineering, retries,
-        and configuration for AI-backed features.
+    <description>Parent for OpenAPI samples. Demonstrates SpringDoc integration, Swagger UI, schema generation, and API
+        documentation best practices across modules.
     </description>
     <licenses>
         <license>
@@ -28,7 +28,10 @@
             <email>alex.mondshain@gmail.com</email>
         </developer>
     </developers>
+
+
     <modules>
-        <module>spring-boot-ai-sample</module>
+        <module>spring-boot-fabric8-client</module>
+        <module>spring-boot-kubernetes-client</module>
     </modules>
 </project>

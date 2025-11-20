@@ -149,18 +149,18 @@
                     <input type="password" id="password" name="password" required placeholder="Enter password">
                 </div>
 
-                <div class="form-group">
-                    <label for="applicationName">applicationName:</label>
-                    <input type="text" id="applicationName" name="applicationName" required placeholder="Enter applicationName">
-                </div>
-    
 <!--                <div class="form-group">-->
-<!--                    <label for="applicationName">Select Application:</label>-->
-<!--                    <select id="applicationName" name="applicationName" required>-->
-<!--                        <option value="">&#45;&#45; Select an application &#45;&#45;</option>-->
-<!--                        <option th:each="app : ${applications}" th:value="${app}" th:text="${app}"></option>-->
-<!--                    </select>-->
+<!--                    <label for="applicationName">applicationName:</label>-->
+<!--                    <input type="text" id="applicationName" name="applicationName" required placeholder="Enter applicationName">-->
 <!--                </div>-->
+    
+                <div class="form-group">
+                    <label for="applicationName">Select Application:</label>
+                    <select id="applicationName" name="applicationName" required>
+                        <option value="">-- Select an application --</option>
+                        <option th:each="app : ${applications}" th:value="${app}" th:text="${app}"></option>
+                    </select>
+                </div>
     
                 <button type="submit" class="btn-login">Login</button>
             </form>

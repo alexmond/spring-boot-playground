@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.savedrequest.SavedRequest;
 
 import java.util.List;
 
@@ -40,6 +41,12 @@ public class SecurityConfig {
                         .loginProcessingUrl("/login") // URL to submit the username and password
                         .defaultSuccessUrl("/", true) // Redirect after successful login
                         .failureUrl("/login?error=true") // Redirect on login failure
+                        .successHandler((request, response, authentication) -> {
+                            String redirectUrl = request.getSession().getAttribute("SPRING_SECURITY_SAVED_REQUEST") != null ?
+                                    ((SavedRequest) request.getSession().getAttribute("SPRING_SECURITY_SAVED_REQUEST")).getRedirectUrl() :
+                                    "/";
+                            response.sendRedirect(redirectUrl);
+                        })
                         .permitAll()
                 )
                 .logout(logout -> logout

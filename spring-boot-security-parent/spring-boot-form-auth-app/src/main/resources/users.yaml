@@ -1,0 +1,29 @@
+app:
+  users:
+    - username: admin
+#      password: $2a$10$slYQmyNdGzin7olVN3p5Be7DkH0B3z9b21glLP5Ye5f/UcZnm2MZm# bcrypt: admin123
+      password: admin123
+      applications:
+        - Banking
+        - HR
+        - CRM
+        - Analytics
+    - username: user1
+      password: $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/tjO  # bcrypt: password
+      applications:
+        - Banking
+        - HR
+    - username: user2
+      password: $2a$10$V6r/A.Yt1r/yfgbKWkEDy.XqrPGVuU7FqqTkFEFt8E2VfbBXH9GAK  # bcrypt: test123
+      applications:
+        - CRM
+        - Analytics
+    - username: guest
+      password: $2a$10$WMlXG5KLvTIpJRGVNlkK1.8yzMj.gvBUKDjQIFNzVjNNlh/cNP1uW  # bcrypt: guest123
+      applications:
+        - Analytics
+
+# Password Hashes:
+# admin123 -> $2a$10$slYQmyNdGzin7olVN3p5Be7DkH0B3z9b21glLP5Ye5f/UcZnm2MZm
+# password -> $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcg7b3XeKeUxWdeS86E36P4/tjO
+# test123 -> $2a$10$V6r/A.Yt1r/yfgbKWkEDy.XqrPGVuU7FqqTkFEFt8E2VfbBXH9GAK

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Authentication Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .alert {
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .info-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .demo-accounts {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+                .demo-accounts p {
+                    color: #666;
+                    margin-bottom: 8px;
+                }
+            </style>
+    </head>
+<body>
+    <div class="login-container">
+            <div class="login-header">
+                <h1>🔐 Secure Login</h1>
+                <p>Form Authentication with Application Access Control</p>
+            </div>
+    
+            <div th:if="${error}" class="alert alert-danger">
+                <strong>Error!</strong> <span th:text="${error}"></span>
+            </div>
+    
+            <form method="post" action="/login">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter username">
+                </div>
+    
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter password">
+                </div>
+
+                <div class="form-group">
+                    <label for="applicationName">applicationName:</label>
+                    <input type="text" id="applicationName" name="applicationName" required placeholder="Enter applicationName">
+                </div>
+    
+<!--                <div class="form-group">-->
+<!--                    <label for="applicationName">Select Application:</label>-->
+<!--                    <select id="applicationName" name="applicationName" required>-->
+<!--                        <option value="">&#45;&#45; Select an application &#45;&#45;</option>-->
+<!--                        <option th:each="app : ${applications}" th:value="${app}" th:text="${app}"></option>-->
+<!--                    </select>-->
+<!--                </div>-->
+    
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+    
+            <div class="demo-accounts">
+                <p><strong>Demo Accounts:</strong></p>
+                <p>👤 <strong>admin</strong> / admin123 (Banking, HR, CRM, Analytics)</p>
+                <p>👤 <strong>user1</strong> / password (Banking, HR)</p>
+                <p>👤 <strong>user2</strong> / test123 (CRM, Analytics)</p>
+                <p>👤 <strong>guest</strong> / guest123 (Analytics)</p>
+            </div>
+    
+            <div class="info-text">
+                <p>🔒 Secure authentication system with Spring Security</p>
+            </div>
+        </div>
+</body>
+</html>

@@ -29,13 +29,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.6</version>
+        <version>3.5.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <properties>
         <spring-boot-admin.version>3.5.5</spring-boot-admin.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
-        <spring-boot-config-json-schema.version>1.0.4</spring-boot-config-json-schema.version>
+        <spring-boot-config-json-schema.version>1.0.8</spring-boot-config-json-schema.version>
     </properties>
     <dependencyManagement>
         <dependencies>

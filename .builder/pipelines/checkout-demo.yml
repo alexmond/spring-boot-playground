@@ -1,0 +1,16 @@
+# Demonstrates #237 runner-side checkout: the job image (eclipse-temurin) has NO git, and there is
+# NO `git clone` step — builder's checkout: true clones the repo into the workspace via a git
+# init-container before the steps run (GitLab/GitHub model).
+name: Checkout demo
+on: [manual]
+checkout: true
+jobs:
+  show:
+    image: eclipse-temurin:21-jdk
+    steps:
+      - run: |
+          echo "=== workspace (cloned by builder, not by a step) ==="
+          ls -la
+          echo "=== git in this image? (expect: not found) ==="
+          command -v git || echo "no git in image — checkout still worked"
+          test -f pom.xml && echo "CHECKOUT OK: pom.xml present"

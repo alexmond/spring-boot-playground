@@ -1,6 +1,7 @@
-name: samples
-title: Spring Boot examples
-version: 0.0.1
+name: spring-boot-playground
+title: Spring Boot Playground
+version: true
+start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc
 

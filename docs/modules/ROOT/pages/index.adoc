@@ -1,4 +1,5 @@
 = Spring Boot Playground Modules
+:description: A multi-module Spring Boot learning playground — runnable examples for REST APIs, config, security, OpenAPI, JPA + Flyway, Thymeleaf MVC, Actuator, and AI integrations.
 :toc: left
 :sectnums:
 

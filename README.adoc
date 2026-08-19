@@ -4,6 +4,8 @@
 
 This project is a multi-module Spring Boot playground showcasing REST APIs, configuration, security, OpenAPI, JPA + Flyway, Thymeleaf MVC, Admin monitoring, and AI integrations.
 
+📖 *Documentation:* https://www.alexmond.org/spring-boot-playground/current/
+
 == Module Map
 
 - spring-boot-rest-sample — REST API basics

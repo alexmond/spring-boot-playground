@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.alexmond</groupId>
+        <artifactId>boot-sample-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>spring-boot-batch-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>spring-boot-batch-parent</name>
+    <packaging>pom</packaging>
+    <description>Parent for Spring Batch samples. Each module isolates one mechanism and asserts its
+        behaviour in tests rather than describing it: job flow and deciders, restart versus a new job
+        instance, tasklet step shapes, and partitioning.
+    </description>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Alex Mondshain</name>
+            <email>alex.mondshain@gmail.com</email>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>spring-boot-batch-restart</module>
+        <module>spring-boot-batch-flow</module>
+        <module>spring-boot-batch-tasklet</module>
+        <module>spring-boot-batch-partition</module>
+    </modules>
+</project>

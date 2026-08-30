@@ -59,5 +59,6 @@
         <module>spring-boot-security-parent</module>
         <module>spring-boot-ai-samples</module>
         <module>spring-boot-k8-parent</module>
+        <module>spring-boot-batch-parent</module>
     </modules>
 </project>

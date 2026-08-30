@@ -36,11 +36,29 @@
             <artifactId>spring-security-oauth2-authorization-server</artifactId>
         </dependency>
 
-        <!-- JWT and JOSE -->
+        <!-- JWT and JOSE (not managed by the Boot BOM; Spring Security 7.0.x uses 10.x) -->
         <dependency>
             <groupId>com.nimbusds</groupId>
             <artifactId>nimbus-jose-jwt</artifactId>
-            <version>9.37</version>
+            <version>10.9.1</version>
+        </dependency>
+
+        <!-- Boot 4 moved RestTemplateBuilder into spring-boot-restclient -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-restclient</artifactId>
+        </dependency>
+
+        <!--
+          spring-security-oauth2-authorization-server excludes commons-logging from its
+          spring-core, which wins dependency mediation and leaves the JCL API absent
+          (NoClassDefFoundError: org/apache/commons/logging/LogFactory). Restore it the
+          Spring Boot way: the SLF4J JCL bridge, which supplies the commons-logging API
+          but routes it through SLF4J/Logback. Version managed by Boot.
+        -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
         </dependency>
 
         <!-- Spring Boot Data JPA -->
@@ -73,13 +91,19 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.0.4</version>
+            <version>3.0.3</version>
         </dependency>
 
         <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- Boot 4 modularized the MVC test slice (@WebMvcTest / @AutoConfigureMockMvc) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-webmvc-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

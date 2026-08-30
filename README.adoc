@@ -24,6 +24,11 @@ This project is a multi-module Spring Boot playground showcasing REST APIs, conf
 - spring-boot-security-basic — Basic auth demo
 - spring-boot-security-jwt — JWT-based security demo
 - spring-boot-ai-samples — Spring AI integrations
+- spring-boot-batch-parent — Parent for Spring Batch samples
+- spring-boot-batch-restart — JobInstance identity, restart vs a new run
+- spring-boot-batch-flow — Conditional flow, ExitStatus routing, deciders
+- spring-boot-batch-tasklet — Tasklet vs chunk, CONTINUABLE paging
+- spring-boot-batch-partition — Partitioned steps, stride vs contiguous
 - openapi-sample (under spring-boot-openapi-root) — Concrete OpenAPI demo
 
 == spring-boot-rest-sample
@@ -151,3 +156,67 @@ How to run:
 
 Learning goals:
 - Safely integrate AI services - Reusable abstractions for AI features
+
+== spring-boot-batch-parent
+
+Four Spring Batch samples, one mechanism each. They assert behaviour rather than
+describe it: every claim below is a passing test, and several of them replaced an
+assumption that turned out to be wrong when measured.
+
+=== spring-boot-batch-restart — what "continue" actually means
+
+A job continues only when an *interrupted execution* is relaunched with the *same*
+identifying parameters. New content is a new `JobInstance`, not a re-run.
+
+- identical parameters after completion are refused with `JobInstanceAlreadyCompleteException`
+- different parameters make a new instance and everything runs again
+- an interrupted instance relaunched *resumes* — the already-completed step's body does not execute a second time
+- a random per-launch token orphans the failed instance and silently redoes the work
+
+*The finding nobody asks for:* Boot 4 ships **no JDBC job-repository
+auto-configuration**. Add `spring-boot-starter-batch` and a `DataSource` and you
+get `ResourcelessJobRepository`. The job runs, every step executes, it reports
+`COMPLETED` — and nothing is written down. Every execution is id 1, no `BATCH_*`
+table is created, and restart therefore does not exist. Not refused: absent.
+Nothing warns you, so `ResourcelessDefaultTest` pins it.
+
+=== spring-boot-batch-flow — routing on ExitStatus
+
+`BatchStatus` is the recorded outcome; `ExitStatus` is a string and the only thing
+`on(...)` matches. A step that *succeeded* can still route away from the happy path
+by returning a custom `ExitStatus` from a `StepExecutionListener`.
+
+A `JobExecutionDecider` answers a question about the state of the world without
+doing work — and leaves no `StepExecution` behind, so "the gate was shut" stays
+distinguishable from "the gate was open and there was nothing to do".
+
+=== spring-boot-batch-tasklet — the two step shapes
+
+A chunk step commits every N items with the framework owning the loop; a tasklet is
+one method you own. Returning `RepeatStatus.CONTINUABLE` re-invokes it *in a new
+transaction each time*, which is how a long sweep commits as it goes and survives
+being killed halfway.
+
+Two assumptions here were wrong before measurement: Batch 6 does **not** add a
+final empty commit (7 items at chunk 3 is 3 commits, not 4), and the current
+transaction's *name* cannot distinguish two transactions — it is derived from the
+step and is identical every time. Counting `afterCommit` callbacks can.
+
+=== spring-boot-batch-partition — stride, not contiguous
+
+Worker k taking `[k*size, (k+1)*size)` is correct and usually the wrong choice: ids
+follow insertion order, which follows walk order, so one contiguous block lands on
+the expensive material and the step takes as long as its unluckiest worker.
+
+Measured at 60 items over 4 workers with cost clustered at one end:
+
+[cols="1,1,1"]
+|===
+|scheme |slowest worker |vs a perfect split
+
+|stride |18,895 |1.08x
+|contiguous |40,840 |2.33x
+|===
+
+Both cover the same population; only the balance differs. The slowest worker *is*
+the wall clock, which is the number the test asserts on.

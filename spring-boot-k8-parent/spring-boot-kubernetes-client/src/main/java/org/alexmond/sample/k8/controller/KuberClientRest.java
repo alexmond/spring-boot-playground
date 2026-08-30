@@ -33,7 +33,7 @@ public class KuberClientRest {
     @GetMapping("/pods")
     public ResponseEntity<List<String>> getPods() {
         try {
-            V1PodList podList = api().listPodForAllNamespaces(null, null, null, null, null, null, null, null, null, null, null);
+            V1PodList podList = api().listPodForAllNamespaces().execute();
             List<String> pods = podList.getItems().stream()
                     .map(pod -> pod.getMetadata().getName())
                     .collect(Collectors.toList());
@@ -47,7 +47,7 @@ public class KuberClientRest {
     @GetMapping("/pods/{namespace}")
     public ResponseEntity<List<String>> getPodsByNamespace(@PathVariable String namespace) {
         try {
-            V1PodList podList = api().listNamespacedPod(namespace, null, null, null, null, null, null, null, null, null, null, null);
+            V1PodList podList = api().listNamespacedPod(namespace).execute();
             List<String> pods = podList.getItems().stream()
                     .map(pod -> pod.getMetadata().getName())
                     .collect(Collectors.toList());
@@ -61,7 +61,7 @@ public class KuberClientRest {
     @GetMapping("/pods/details/{name}")
     public ResponseEntity<V1Pod> getPodByName(@PathVariable String name) {
         try {
-            V1Pod pod = api().listPodForAllNamespaces(null, null, null, null, null, null, null, null, null, null, null)
+            V1Pod pod = api().listPodForAllNamespaces().execute()
                     .getItems().stream()
                     .filter(p -> name.equals(p.getMetadata().getName()))
                     .findFirst()
@@ -76,7 +76,7 @@ public class KuberClientRest {
     @GetMapping("/pods/count")
     public ResponseEntity<Integer> getPodCount() {
         try {
-            int count = api().listPodForAllNamespaces(null, null, null, null, null, null, null, null, null, null, null)
+            int count = api().listPodForAllNamespaces().execute()
                     .getItems()
                     .size();
             return ResponseEntity.ok(count);
@@ -89,7 +89,7 @@ public class KuberClientRest {
     @GetMapping("/namespaces")
     public ResponseEntity<List<String>> getNamespaces() {
         try {
-            V1NamespaceList namespaceList = api().listNamespace(null, null, null, null, null, null, null, null, null, null, null);
+            V1NamespaceList namespaceList = api().listNamespace().execute();
             List<String> namespaces = namespaceList.getItems().stream()
                     .map(namespace -> namespace.getMetadata().getName())
                     .collect(Collectors.toList());

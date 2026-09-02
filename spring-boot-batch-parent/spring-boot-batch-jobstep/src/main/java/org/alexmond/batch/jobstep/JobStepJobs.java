@@ -5,6 +5,7 @@ import org.springframework.batch.core.job.JobExecution;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.job.parameters.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobOperator;
+import org.springframework.batch.core.listener.ExecutionContextPromotionListener;
 import org.springframework.batch.core.listener.JobExecutionListener;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.Step;
@@ -16,6 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -63,6 +66,15 @@ import java.util.concurrent.atomic.AtomicInteger;
  * {@code JobInstanceAlreadyCompleteException} thrown from inside the JobStep.
  * The job succeeds once and then fails for good.
  *
+ * <h2>Nothing else crosses the boundary</h2>
+ *
+ * <p>{@code JobStep.doExecute} sets an exit status and, if the child stopped,
+ * a status. That is all it does with the child's JobExecution. A value the
+ * child promotes into the <em>child's</em> job execution context is invisible
+ * to the parent -- the parent's job execution context is a different object and
+ * nothing copies between them. The one bit of information that crosses a
+ * nesting boundary is the ExitStatus string.
+ *
  * <p><b>A varying extractor</b> ({@link #stampedJob}). An extractor that stamps
  * each launch with a fresh value looks like the fix for the previous trap. What
  * it exposes instead is that {@code JobStep} <em>caches</em> the extracted
@@ -84,6 +96,12 @@ public class JobStepJobs {
     /** Every JobExecution the child job produced, oldest first. */
     public static final List<JobExecution> CHILD_EXECUTIONS = new CopyOnWriteArrayList<>();
 
+    /** A value the CHILD promotes into the CHILD's job execution context. */
+    public static final String CHILD_NOTE = "childNote";
+
+    /** What the PARENT's last step could see in the PARENT's job execution context. */
+    public static final Map<String, Object> PARENT_SAW = new ConcurrentHashMap<>();
+
     /** How many times each custom extractor was asked for parameters. */
     public static final AtomicInteger PINNED_CALLS = new AtomicInteger();
     public static final AtomicInteger STAMPED_CALLS = new AtomicInteger();
@@ -99,9 +117,20 @@ public class JobStepJobs {
 
     // ----------------------------------------------------------------- child
 
+    /** Promotes a value into the CHILD job's execution context, properly. */
     @Bean
     public Step download(JobRepository repo, PlatformTransactionManager tx) {
-        return trivial("download", repo, tx);
+        ExecutionContextPromotionListener promotion = new ExecutionContextPromotionListener();
+        promotion.setKeys(new String[]{CHILD_NOTE});
+        return new StepBuilder("download", repo)
+                .tasklet((c, cc) -> {
+                    TRACE.add("download");
+                    cc.getStepContext().getStepExecution().getExecutionContext()
+                            .putString(CHILD_NOTE, "17 rows");
+                    return RepeatStatus.FINISHED;
+                }, tx)
+                .listener(promotion)
+                .build();
     }
 
     @Bean
@@ -139,9 +168,18 @@ public class JobStepJobs {
         return trivial("prepare", repo, tx);
     }
 
+    /** Reads the PARENT's job execution context, after the JobStep has run. */
     @Bean
     public Step publish(JobRepository repo, PlatformTransactionManager tx) {
-        return trivial("publish", repo, tx);
+        return new StepBuilder("publish", repo)
+                .tasklet((c, cc) -> {
+                    TRACE.add("publish");
+                    PARENT_SAW.put(CHILD_NOTE,
+                            String.valueOf(cc.getStepContext().getJobExecutionContext()
+                                    .get(CHILD_NOTE)));
+                    return RepeatStatus.FINISHED;
+                }, tx)
+                .build();
     }
 
     /** No {@code parametersExtractor(...)}: the child inherits every parent parameter. */

@@ -33,6 +33,7 @@ class JobStepNestingTest {
         JobStepJobs.TRACE.clear();
         JobStepJobs.CHILD_EXECUTIONS.clear();
         JobStepJobs.FAIL_PARSE.set(false);
+        JobStepJobs.PARENT_SAW.clear();
         JobStepJobs.PINNED_CALLS.set(0);
         JobStepJobs.STAMPED_CALLS.set(0);
     }
@@ -94,6 +95,24 @@ class JobStepNestingTest {
         assertThat(JobStepJobs.CHILD_EXECUTIONS.get(0).getAllFailureExceptions())
                 .as("the real cause is recorded against the child")
                 .anySatisfy(t -> assertThat(t).isInstanceOf(IllegalStateException.class));
+    }
+
+    @Test
+    @DisplayName("only the ExitStatus crosses the nesting boundary -- not the child's job context")
+    void nothingTheChildPromotesReachesTheParent() throws Exception {
+        JobExecution parent = jobOperator.start(nightlyJob, scan("no-data-back"));
+
+        assertThat(JobStepJobs.CHILD_EXECUTIONS.get(0).getExecutionContext()
+                .getString(JobStepJobs.CHILD_NOTE))
+                .as("the child promoted it correctly, into the CHILD's job context")
+                .isEqualTo("17 rows");
+        assertThat(parent.getExecutionContext().containsKey(JobStepJobs.CHILD_NOTE))
+                .as("and the parent's job context is a different object that nothing copies into")
+                .isFalse();
+        assertThat(JobStepJobs.PARENT_SAW.get(JobStepJobs.CHILD_NOTE))
+                .as("so the parent's next step reads nothing -- a nested job can report a "
+                        + "status and nothing else")
+                .isEqualTo("null");
     }
 
     @Test

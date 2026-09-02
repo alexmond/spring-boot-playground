@@ -232,6 +232,11 @@ status, not the child's steps. A nested failure surfaces as
 `UnexpectedJobExecutionException` — the parent is told *that* the child failed,
 never why.
 
+Nothing else crosses the boundary: a value the child promotes into the *child's*
+job execution context is invisible to the parent, whose job execution context is a
+different object that nothing copies into. One ExitStatus string per nesting level
+is the whole channel.
+
 The child's restart identity is whatever the `JobParametersExtractor` hands it, and
 that one object decides everything:
 

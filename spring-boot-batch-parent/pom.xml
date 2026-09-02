@@ -16,7 +16,8 @@
     <packaging>pom</packaging>
     <description>Parent for Spring Batch samples. Each module isolates one mechanism and asserts its
         behaviour in tests rather than describing it: job flow and deciders, restart versus a new job
-        instance, tasklet step shapes, and partitioning.
+        instance, tasklet step shapes, partitioning, a job nested inside a step, parallel flows, and
+        promoting data from a step context to the job context.
     </description>
 
     <licenses>

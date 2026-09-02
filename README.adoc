@@ -29,6 +29,9 @@ This project is a multi-module Spring Boot playground showcasing REST APIs, conf
 - spring-boot-batch-flow — Conditional flow, ExitStatus routing, deciders
 - spring-boot-batch-tasklet — Tasklet vs chunk, CONTINUABLE paging
 - spring-boot-batch-partition — Partitioned steps, stride vs contiguous
+- spring-boot-batch-jobstep — A Job nested in a step, and the extractor that decides its identity
+- spring-boot-batch-split — Parallel flows, and a reusable Flow shared by two jobs
+- spring-boot-batch-promotion — Passing a value between steps, and the three ways it does not arrive
 - openapi-sample (under spring-boot-openapi-root) — Concrete OpenAPI demo
 
 == spring-boot-rest-sample
@@ -159,7 +162,7 @@ Learning goals:
 
 == spring-boot-batch-parent
 
-Four Spring Batch samples, one mechanism each. They assert behaviour rather than
+Seven Spring Batch samples, one mechanism each. They assert behaviour rather than
 describe it: every claim below is a passing test, and several of them replaced an
 assumption that turned out to be wrong when measured.
 
@@ -220,3 +223,77 @@ Measured at 60 items over 4 workers with cost clustered at one end:
 
 Both cover the same population; only the balance differs. The slowest worker *is*
 the wall clock, which is the number the test asserts on.
+
+=== spring-boot-batch-jobstep — a whole Job inside a step
+
+A `JobStep` runs `jobOperator.start(childJob, parameters)`. The child gets its own
+`JobExecution` and its own `JobInstance`; the parent sees one step and an exit
+status, not the child's steps. A nested failure surfaces as
+`UnexpectedJobExecutionException` — the parent is told *that* the child failed,
+never why.
+
+The child's restart identity is whatever the `JobParametersExtractor` hands it, and
+that one object decides everything:
+
+- *no extractor* — the default copies **every** parent parameter, identifying flags
+  intact, so the child instance tracks the parent's. Relaunching a failed parent
+  resumes the child: the completed parent step and the completed *child* step both
+  stay done. Restart nests, and you get it by writing nothing.
+- *a fixed extractor* — "the child always imports the catalogue" is the obvious
+  thing to write and it makes the parent succeed exactly once. The second parent
+  run, a legitimately new instance, dies on `JobInstanceAlreadyCompleteException`
+  thrown from inside the JobStep.
+
+*The finding that changes how you read the API:* `JobStep` **caches** the extracted
+parameters in its own step execution context on first use and reads them back on
+restart. An extractor that stamps each launch with a fresh value is called once, not
+twice — and that cache is not an optimisation, it is the only reason a nested
+restart can land on the same child instance at all.
+
+=== spring-boot-batch-split — parallel flows, and a Flow worth extracting
+
+`split(TaskExecutor)` runs flows concurrently and joins. Two things decide how to
+read any split:
+
+- *the flow passed to `start(...)` is itself a branch* — `start(a).split(e).add(b)`
+  runs `a` and `b` at the same time. The branch count is one more than the number of
+  `add(...)` arguments. Pinned by a rendezvous latch: neither branch can leave until
+  the other has arrived, which sequential execution cannot satisfy.
+- *a failing branch does not cancel its siblings* — every branch runs to completion,
+  then the worst status wins. A split costs its slowest branch even when another
+  failed in the first second.
+
+A `Flow` bean built with `FlowBuilder` is shared by two jobs here, and each job
+execution gets its own step executions. A `Flow` is *structure*, not an instance:
+naming the same flow twice inside one job adds no second traversal.
+
+*The one that cost the most to find:* a branch that completes and reports a custom
+`ExitStatus` — the ordinary routing signal the flow sample is built on — ends the
+job `FAILED`, with **no failure exception and an empty exit description**. Every
+step in it completed. Running that branch alone fails identically, so it is not a
+property of `split` at all: a flow whose step ends on a status no transition matches
+ends FAILED. A split only makes it harder to see, because the job status is then the
+only evidence and it does not say which branch produced it.
+
+=== spring-boot-batch-promotion — the value that did not arrive
+
+A step's `ExecutionContext` is invisible downstream; the job's is visible to every
+later step. `ExecutionContextPromotionListener` is the bridge, and it is opt-in per
+key, per exit status, and silent:
+
+- a key you did not name reads back `null` in the later step — not an error, not a
+  warning, and indistinguishable from a value that was never computed. It is still
+  there, in the writing step's own context, where nothing downstream will look.
+- promotion defaults to `statuses = {"COMPLETED"}`. A step that completes and reports
+  a custom exit status promotes *nothing*, including the key you did name — so the
+  step that succeeded and routed, the one whose numbers you most want, is the case
+  the default excludes.
+
+*The surprise:* `strict = true` does not make it loud. The listener does raise
+`IllegalArgumentException`, and `AbstractStep` catches every exception a listener
+throws from `afterStep` and logs it. The step completes, the job completes, nothing
+is recorded against the step execution, the next step runs with nothing to read, and
+the only trace is one ERROR line. A misspelled promotion key is not detectable from
+a job's outcome under either setting — if it matters, the reading step has to assert
+on what it read.
+

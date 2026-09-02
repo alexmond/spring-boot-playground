@@ -38,5 +38,6 @@
         <module>spring-boot-batch-flow</module>
         <module>spring-boot-batch-tasklet</module>
         <module>spring-boot-batch-partition</module>
+        <module>spring-boot-batch-jobstep</module>
     </modules>
 </project>

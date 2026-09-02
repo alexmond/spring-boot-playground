@@ -40,5 +40,6 @@
         <module>spring-boot-batch-partition</module>
         <module>spring-boot-batch-jobstep</module>
         <module>spring-boot-batch-split</module>
+        <module>spring-boot-batch-promotion</module>
     </modules>
 </project>
